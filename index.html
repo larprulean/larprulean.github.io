@@ -3,11 +3,217 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Website</title>
+  <title>cerulean</title>
+  <meta name="description" content="cerulean — student, gamer, and builder of small useful things.">
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Hi, I'm Cam</h1>
-  <p>Welcome to my website.</p>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#top" aria-label="cerulean home">
+        <span class="mark" aria-hidden="true">c</span>
+        <span class="brand-name">cerulean</span>
+      </a>
+      <nav class="nav-links" aria-label="Main">
+        <a href="#projects">Projects</a>
+        <a href="#stack">Stack</a>
+        <a href="#now">Now</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="chip-btn" href="https://github.com/larprulean" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5Z"/></svg>
+          larprulean
+        </a>
+        <button class="icon-btn menu-btn" aria-label="Open menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <nav class="mobile-menu" aria-label="Mobile">
+      <a href="#projects">Projects</a>
+      <a href="#stack">Stack</a>
+      <a href="#now">Now</a>
+      <a href="https://github.com/larprulean" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-mark" aria-hidden="true">c</div>
+      <div class="container hero-inner">
+        <a class="announce" href="#projects">
+          <span class="dot"></span>
+          New: Last Rampart is playable in the browser
+          <span class="announce-arrow" aria-hidden="true">↗</span>
+        </a>
+        <h1>
+          <span class="hl">I build</span> small things<br>that actually work.
+        </h1>
+        <p class="lead">Student, gamer, and tinkerer. I make browser games, tools that save me time, and apps I wanted to exist.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#projects">See my projects <span aria-hidden="true">→</span></a>
+          <a class="btn btn-ghost" href="https://github.com/larprulean" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5Z"/></svg>
+            View my GitHub
+          </a>
+        </div>
+        <ul class="meta-row">
+          <li><span class="meta-ic">&lt;/&gt;</span> HTML, JS, React, Python</li>
+          <li><span class="meta-ic">◆</span> Built for fun, kept because useful</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section" id="projects">
+      <div class="container">
+        <p class="eyebrow">Projects</p>
+        <h2>Things I've made. <em>Some of them even on purpose.</em></h2>
+        <p class="section-lead">A mix of games, utilities, and side apps, each built to scratch a specific itch.</p>
+
+        <div class="cards">
+          <article class="card reveal">
+            <div class="card-top">
+              <span class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 21V9l4-3 4 3 4-3 4 3v12M4 13h16M9 21v-4h6v4"/></svg>
+              </span>
+              <span class="tag">Game</span>
+              <span class="num">01</span>
+            </div>
+            <h3>Last Rampart</h3>
+            <p>A medieval zombie tower defense game. Four tower types, fifteen waves, and canvas-drawn visuals, all in plain HTML and JavaScript.</p>
+            <ul class="chips"><li>HTML</li><li>JavaScript</li><li>Canvas</li></ul>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-top">
+              <span class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9M12 7v5l3 2M17 3h4v4M21 3l-6 6"/></svg>
+              </span>
+              <span class="tag">Tool</span>
+              <span class="num">02</span>
+            </div>
+            <h3>Pokémon TCG Stock Monitor</h3>
+            <p>A desktop app that watches store pages for restocks and pings Discord the moment something flips from out of stock to available.</p>
+            <ul class="chips"><li>Python</li><li>Playwright</li><li>Discord webhooks</li></ul>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-top">
+              <span class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M6 7h12l-1 13H7L6 7ZM9 7a3 3 0 0 1 6 0"/></svg>
+              </span>
+              <span class="tag">Web app</span>
+              <span class="num">03</span>
+            </div>
+            <h3>Haul</h3>
+            <p>A Y2K-styled tracker for clothes and stuff sitting in carts, with a browser extension that clips product links straight in.</p>
+            <ul class="chips"><li>JavaScript</li><li>Chrome extension</li></ul>
+          </article>
+
+          <article class="card reveal">
+            <div class="card-top">
+              <span class="card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>
+              </span>
+              <span class="tag">Web app</span>
+              <span class="num">04</span>
+            </div>
+            <h3>Calorie Calculator</h3>
+            <p>A React app for daily targets, a food log, and macro tracking, plus a fast-food menu color-coded by protein per calorie.</p>
+            <ul class="chips"><li>React</li><li>JavaScript</li></ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- STACK / TERMINAL -->
+    <section class="section section-alt" id="stack">
+      <div class="container split">
+        <div>
+          <p class="eyebrow">Stack</p>
+          <h2>What I work with.</h2>
+          <p class="section-lead">I pick whatever gets the idea running fastest, then polish once it works.</p>
+          <ul class="stack-list">
+            <li><span>Front end</span><span>HTML, CSS, JavaScript, React</span></li>
+            <li><span>Scripting</span><span>Python, Playwright</span></li>
+            <li><span>Shipping</span><span>GitHub Pages, PyInstaller</span></li>
+            <li><span>Other</span><span>Running a Fabric Minecraft server</span></li>
+          </ul>
+        </div>
+        <div class="terminal reveal" aria-label="Terminal example">
+          <div class="term-bar">
+            <span></span><span></span><span></span>
+            <p>cerulean@site ~</p>
+          </div>
+          <pre><code><span class="t-prompt">$</span> whoami
+cerulean
+
+<span class="t-prompt">$</span> ls projects/
+last-rampart/  stock-monitor/  haul/  calorie-calc/
+
+<span class="t-prompt">$</span> cat status.txt
+<span class="t-ok">✓</span> building things
+<span class="t-ok">✓</span> gaming
+<span class="t-dim">…</span> learning more every week</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOW -->
+    <section class="section" id="now">
+      <div class="container">
+        <p class="eyebrow">Now</p>
+        <h2>What I'm up to <em>right now.</em></h2>
+        <div class="now-grid">
+          <div class="now-item reveal">
+            <span class="now-num">01</span>
+            <h3>Polishing the stock monitor</h3>
+            <p>Turning a working command-line script into a clean dark-themed desktop app.</p>
+          </div>
+          <div class="now-item reveal">
+            <span class="now-num">02</span>
+            <h3>Building this site</h3>
+            <p>A home base for everything I make, so it all lives in one place.</p>
+          </div>
+          <div class="now-item reveal">
+            <span class="now-num">03</span>
+            <h3>Competitive gaming</h3>
+            <p>Organizing scrims and playing on a collegiate team.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section">
+      <div class="container">
+        <div class="cta-card reveal">
+          <div class="cta-glow" aria-hidden="true"></div>
+          <h2>Want to see the code?</h2>
+          <p class="section-lead">Everything public lives on GitHub. Poke around.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="https://github.com/larprulean" target="_blank" rel="noopener">Open GitHub <span aria-hidden="true">→</span></a>
+            <a class="btn btn-ghost" href="#top">Back to top</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a class="brand" href="#top"><span class="mark" aria-hidden="true">c</span><span class="brand-name">cerulean</span></a>
+      <p>© <span id="year">2026</span> cerulean · larprulean.github.io</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
