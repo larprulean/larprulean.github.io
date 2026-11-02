@@ -18,7 +18,7 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html { background: var(--paper); scroll-behavior: smooth; }
+html { background: var(--paper); scroll-behavior: smooth; overflow-x: clip; }
 body {
   background: var(--paper);
   color: var(--ink);
@@ -103,7 +103,7 @@ ul { list-style: none; }
 .side-en { right: 14px; transform: translateY(-50%) rotate(180deg); text-transform: uppercase; color: var(--muted); }
 
 /* ---------- PAGE ---------- */
-.page { position: relative; z-index: 10; min-height: 24400px; }
+.page { position: relative; z-index: 10; min-height: 24400px; overflow-x: clip; }
 
 .hero {
   min-height: 100svh;
@@ -185,6 +185,28 @@ ul { list-style: none; }
 .marquee span { font-family: var(--display); font-size: 1.4rem; padding: .55rem 0; white-space: nowrap; }
 @keyframes marquee { to { transform: translateX(-50%); } }
 
+/* ---------- SCROLL SPIRAL ---------- */
+.spiral {
+  position: fixed; left: 50%; top: 50%; z-index: 3; pointer-events: none;
+  width: min(120vmin, 980px); height: min(120vmin, 980px);
+  transform: translate(-50%, -50%) rotate(var(--rot, 0deg)) scale(var(--sc, .6));
+  mix-blend-mode: multiply; opacity: .75;
+}
+.spiral path { fill: none; stroke: var(--red); stroke-width: 2.4; stroke-linecap: round; }
+
+/* ---------- SCROLL BANDS ---------- */
+.band {
+  position: absolute; left: 0; width: 100%; z-index: 2; pointer-events: none;
+  white-space: nowrap;
+  font-family: var(--display); line-height: .9;
+  font-size: clamp(4.5rem, 15vw, 13rem);
+}
+.band span { display: inline-block; transform: translateX(var(--x, 0px)) rotate(-3deg); will-change: transform; }
+.band-outline { color: transparent; -webkit-text-stroke: 2px var(--ink); }
+.band-outline.band-blue { -webkit-text-stroke-color: var(--blue); }
+.band-red span { color: var(--red); text-shadow: .04em .04em 0 var(--ink); }
+.band-yellow span { color: var(--yellow); -webkit-text-stroke: 2px var(--ink); text-shadow: .05em .05em 0 var(--ink); }
+
 /* ---------- STILL HERE? ---------- */
 .end {
   position: absolute; left: 0; right: 0; bottom: 0; height: 80vh;
@@ -235,5 +257,6 @@ ul { list-style: none; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .ring-layer.b, .grain, .marquee-track, .word::before, .word::after { animation: none; }
+  .spiral { display: none; }
   .end.in .still-here { animation: none; opacity: 1; transform: rotate(-6deg); }
 }

@@ -13,6 +13,9 @@
     <div class="ring-layer a"></div>
     <div class="ring-layer b"></div>
   </div>
+  <!-- scroll-drawn spiral -->
+  <svg class="spiral" viewBox="-100 -100 200 200" aria-hidden="true"><path id="spiral-path" d="M0 0"/></svg>
+
   <!-- live 3D layer (objects are pinned to the .obj anchors below) -->
   <canvas id="scene" aria-hidden="true"></canvas>
   <div class="grain" aria-hidden="true"></div>
@@ -67,6 +70,13 @@
         <span>CERULEAN ✶ セルリアン ✶ KEEP SCROLLING ✶ 青 ✶ CERULEAN ✶ セルリアン ✶ KEEP SCROLLING ✶ 青 ✶&nbsp;</span>
       </div>
     </div>
+
+    <!-- giant type banners that slide as you scroll -->
+    <div class="band band-outline" style="top:13%" data-speed="0.9"><span>KEEP SCROLLING → KEEP SCROLLING → KEEP SCROLLING →</span></div>
+    <div class="band band-red" style="top:31%" data-speed="-0.8"><span>セルリアン ✶ セルリアン ✶ セルリアン ✶ セルリアン</span></div>
+    <div class="band band-outline band-blue" style="top:49%" data-speed="1.1"><span>HALFWAY-ISH ✶ HALFWAY-ISH ✶ HALFWAY-ISH</span></div>
+    <div class="band band-yellow" style="top:67%" data-speed="-1"><span>NOT YET ✶ NOT YET ✶ NOT YET ✶ NOT YET</span></div>
+    <div class="band band-outline" style="top:85%" data-speed="0.85"><span>ALMOST... ALMOST... ALMOST... ALMOST...</span></div>
 
     <!-- 3D objects that drift past on the long scroll -->
     <div class="obj" data-obj="blob"   data-mat="chrome" style="top:7%;  left:6%;   width:min(42vw,380px)" aria-hidden="true"></div>
