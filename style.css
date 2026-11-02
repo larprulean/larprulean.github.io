@@ -83,29 +83,11 @@ ul { list-style: none; }
 .link-sub { font-size: .58rem; letter-spacing: .18em; text-transform: uppercase; }
 .link:hover, .link:focus-visible { background: var(--red); color: #14121c; }
 
-/* ---------- data column (right edge) ---------- */
-.datacol {
-  position: fixed; right: clamp(10px, 3.5vw, 56px); top: 0; bottom: 0; z-index: 1; width: clamp(64px, 7.5vw, 104px);
-  overflow: hidden; pointer-events: none;
-  -webkit-mask-image: linear-gradient(transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(transparent, #000 6%, #000 94%, transparent);
-}
-.datacol-track { display: flex; flex-direction: column; gap: 22px; padding-top: 10px; animation: feed 40s linear infinite; }
-@keyframes feed { to { transform: translateY(-50%); } }
-.drow { display: flex; align-items: center; gap: 6px; color: var(--red); }
-.drow svg { width: 15px; height: 15px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.6; }
-.drow .bar { flex: 1; height: 5px; background: linear-gradient(90deg, currentColor 0 var(--fill, 70%), var(--red-soft) var(--fill, 70%) 100%); }
-.drow .bar.tall { height: 9px; }
-.drow .mini { font-family: var(--title); font-weight: 700; font-size: 11px; line-height: .85; text-align: left; text-transform: lowercase; }
-.drow .num { font-family: var(--label); font-size: 10px; letter-spacing: .08em; }
-.drow.blink .bar { animation: flick 2.2s steps(2) infinite; }
-@keyframes flick { 50% { opacity: .35; } }
 
 /* ---------- small screens ---------- */
 @media (max-width: 700px) {
-  .slate { padding: 2.5rem 58px 4.5rem 14px; }
+  .slate { padding: 2.5rem 16px 4.5rem; }
   .title-row { font-size: clamp(2.2rem, 13.5vw, 6rem); }
-  .datacol { opacity: .7; width: 40px; right: 8px; }
-  .drow .mini, .drow .num { display: none; }
   .lbl-side { top: -1.9em; }
   .mini-icons { transform: none; }
   .links { width: 100%; }
@@ -114,5 +96,5 @@ ul { list-style: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .texture::after, .datacol-track, .drow.blink .bar { animation: none; }
+  .texture::after { animation: none; }
 }
