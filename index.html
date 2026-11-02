@@ -13,6 +13,8 @@
     <div class="ring-layer a"></div>
     <div class="ring-layer b"></div>
   </div>
+  <!-- live 3D layer (objects are pinned to the .obj anchors below) -->
+  <canvas id="scene" aria-hidden="true"></canvas>
   <div class="grain" aria-hidden="true"></div>
 
   <!-- poster furniture -->
@@ -32,6 +34,7 @@
 
   <main class="page" id="top">
     <section class="hero">
+      <div class="obj obj-hero" data-obj="c" data-mat="blue" data-hero aria-hidden="true"></div>
       <h1 class="title" aria-label="cerulean">
         <span class="word" data-text="CERU">CERU</span>
         <span class="word outline" data-text="LEAN">LEAN</span>
@@ -65,7 +68,29 @@
       </div>
     </div>
 
+    <!-- 3D objects that drift past on the long scroll -->
+    <div class="obj" data-obj="blob"   data-mat="chrome" style="top:7%;  left:6%;   width:min(42vw,380px)" aria-hidden="true"></div>
+    <div class="obj" data-obj="flower" data-mat="red"    style="top:15%; right:8%;  width:min(36vw,320px)" aria-hidden="true"></div>
+    <div class="obj" data-obj="knot"   data-mat="yellow" style="top:24%; left:28%;  width:min(50vw,440px)" aria-hidden="true"></div>
+    <div class="obj" data-obj="c"      data-mat="chrome" style="top:34%; right:6%;  width:min(40vw,360px)" aria-hidden="true"></div>
+    <div class="obj" data-obj="flower" data-mat="blue"   style="top:44%; left:9%;   width:min(38vw,340px)" aria-hidden="true"></div>
+    <div class="obj" data-obj="blob"   data-mat="blue"   style="top:54%; right:18%; width:min(46vw,400px)" aria-hidden="true"></div>
+    <div class="obj" data-obj="knot"   data-mat="chrome" style="top:64%; left:5%;   width:min(40vw,360px)" aria-hidden="true"></div>
+    <div class="obj" data-obj="c"      data-mat="red"    style="top:74%; right:10%; width:min(36vw,320px)" aria-hidden="true"></div>
+    <div class="obj" data-obj="flower" data-mat="yellow" style="top:84%; left:24%;  width:min(44vw,380px)" aria-hidden="true"></div>
+
+    <div class="obj" data-obj="c"      data-mat="yellow" style="top:11%; left:58%;  width:min(30vw,260px)" aria-hidden="true"></div>
+    <div class="obj" data-obj="blob"   data-mat="red"    style="top:19%; left:4%;   width:min(34vw,300px)" aria-hidden="true"></div>
+    <div class="obj" data-obj="globe"  data-mat="chrome" style="top:29%; left:12%;  width:min(38vw,330px)" aria-hidden="true"></div>
+    <div class="obj" data-obj="knot"   data-mat="red"    style="top:39%; right:12%; width:min(34vw,300px)" aria-hidden="true"></div>
+    <div class="obj" data-obj="c"      data-mat="blue"   style="top:49%; left:40%;  width:min(40vw,340px)" aria-hidden="true"></div>
+    <div class="obj" data-obj="flower" data-mat="chrome" style="top:59%; left:6%;   width:min(34vw,300px)" aria-hidden="true"></div>
+    <div class="obj" data-obj="blob"   data-mat="yellow" style="top:69%; right:6%;  width:min(36vw,320px)" aria-hidden="true"></div>
+    <div class="obj" data-obj="globe"  data-mat="red"    style="top:79%; left:8%;   width:min(36vw,320px)" aria-hidden="true"></div>
+    <div class="obj" data-obj="knot"   data-mat="blue"   style="top:89%; right:14%; width:min(36vw,320px)" aria-hidden="true"></div>
+
     <div class="end">
+      <div class="obj obj-end" data-obj="globe" data-mat="blue" aria-hidden="true"></div>
       <p class="still-here" id="still-here">
         <span class="sh-text" data-text="still here?">still here?</span>
       </p>
@@ -78,5 +103,7 @@
   </footer>
 
   <script src="script.js"></script>
+  <script src="vendor/three.min.js" defer></script>
+  <script src="scene.js" defer></script>
 </body>
 </html>
