@@ -28,23 +28,24 @@
     return '#' + pa.map((v, i) => Math.round(v + (pb[i] - v) * t).toString(16).padStart(2, '0')).join('');
   };
 
-  // ---- photocopy filter: wobbly edges + speckle; seeds swapped to make it boil ----
+  // ---- photocopy filter: wobbly edges + grain. Three copies with different
+  // noise seeds; the boil swaps which one the letters use, which forces every
+  // browser to redraw (changing a seed in place is often ignored by GPU caches).
   const defs = el('defs');
-  const f = el('filter', { id: 'xerox', x: '-10%', y: '-10%', width: '120%', height: '120%' }, defs);
-  const turb = el('feTurbulence', { type: 'fractalNoise', baseFrequency: '0.022', numOctaves: '2', seed: '1', result: 'warp' }, f);
-  el('feDisplacementMap', { in: 'SourceGraphic', in2: 'warp', scale: '7', xChannelSelector: 'R', yChannelSelector: 'G', result: 'wob' }, f);
-  const speck = el('feTurbulence', { type: 'fractalNoise', baseFrequency: '0.9', numOctaves: '1', seed: '4', result: 'n' }, f);
-  el('feColorMatrix', { in: 'n', type: 'matrix', values: '0 0 0 0 0.08  0 0 0 0 0.07  0 0 0 0 0.16  0 0 0 -3.4 1.3', result: 'dots' }, f);
-  el('feComposite', { in: 'dots', in2: 'wob', operator: 'in', result: 'dotsIn' }, f);
-  el('feMerge', {}, f).append(
-    Object.assign(document.createElementNS(NS, 'feMergeNode'), {}),
-    Object.assign(document.createElementNS(NS, 'feMergeNode'), {})
-  );
-  const merge = f.lastChild;
-  merge.children[0].setAttribute('in', 'wob');
-  merge.children[1].setAttribute('in', 'dotsIn');
+  const FRAMES = 3;
+  for (let i = 0; i < FRAMES; i++) {
+    const f = el('filter', { id: 'xerox' + i, x: '-10%', y: '-10%', width: '120%', height: '120%' }, defs);
+    el('feTurbulence', { type: 'fractalNoise', baseFrequency: '0.022', numOctaves: '2', seed: String(1 + i), result: 'warp' }, f);
+    el('feDisplacementMap', { in: 'SourceGraphic', in2: 'warp', scale: '7', xChannelSelector: 'R', yChannelSelector: 'G', result: 'wob' }, f);
+    el('feTurbulence', { type: 'fractalNoise', baseFrequency: '0.9', numOctaves: '1', seed: String(4 + i), result: 'n' }, f);
+    el('feColorMatrix', { in: 'n', type: 'matrix', values: '0 0 0 0 0.08  0 0 0 0 0.07  0 0 0 0 0.16  0 0 0 -3.4 1.3', result: 'dots' }, f);
+    el('feComposite', { in: 'dots', in2: 'wob', operator: 'in', result: 'dotsIn' }, f);
+    const m = el('feMerge', {}, f);
+    el('feMergeNode', { in: 'wob' }, m);
+    el('feMergeNode', { in: 'dotsIn' }, m);
+  }
 
-  const root = el('g', { filter: 'url(#xerox)' });
+  const root = el('g', { filter: 'url(#xerox0)' });
 
   // ---- tube letter: extrusion stack -> outline -> face -> shade -> highlight ----
   function tube(d, { w, depth = 14, dx = 1.25, dy = 1.15, rot = 0, cx = 0, cy = 0 }) {
@@ -93,11 +94,10 @@
 
   // line boil: swap noise seeds a few times a second
   if (!reduce) {
-    let s = 0;
+    let frame = 0;
     setInterval(() => {
-      s = (s + 1) % 3;
-      turb.setAttribute('seed', String(1 + s));
-      speck.setAttribute('seed', String(4 + s));
+      frame = (frame + 1) % FRAMES;
+      root.setAttribute('filter', `url(#xerox${frame})`);
     }, 160);
   }
 })();
