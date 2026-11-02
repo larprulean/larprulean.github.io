@@ -1,212 +1,72 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="roots">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>cerulean</title>
-  <link rel="preload" href="fonts/dela-gothic-one-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <meta name="description" content="cerulean — links.">
+  <link rel="preload" href="fonts/barlow-condensed-700.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- background: op-art rings (moiré) + grain -->
-  <div class="rings" aria-hidden="true">
-    <div class="ring-layer a"></div>
-    <div class="ring-layer b"></div>
-  </div>
-  <!-- broadcast-style scroll graphics -->
-  <div class="tint" aria-hidden="true"></div>
-  <div class="hero-bg" aria-hidden="true"></div>
-  <!-- broadcast channels: crossfade as you scroll (data-a / data-b = scroll range) -->
-  <div class="channels" aria-hidden="true">
+  <!-- slate texture -->
+  <div class="texture" aria-hidden="true"></div>
 
-    <!-- CH 01: acid-lime slate -->
-    <div class="ch ch-lime" data-layer="lime">
-      <svg class="lime-mark" viewBox="-100 -100 200 200">
-        <circle r="88" fill="none" stroke="#e4322b" stroke-width="3"/>
-        <circle r="74" fill="none" stroke="#e4322b" stroke-width="14"/>
-        <path d="M38 -34 A50 50 0 1 0 38 34" fill="none" stroke="#e4322b" stroke-width="22" stroke-linecap="butt"/>
-        <g stroke="#e4322b" stroke-width="2"><line x1="-100" y1="0" x2="-92" y2="0"/><line x1="92" y1="0" x2="100" y2="0"/><line x1="0" y1="-100" x2="0" y2="-92"/><line x1="0" y1="92" x2="0" y2="100"/></g>
-      </svg>
-      <div class="lbl" style="top:14%;left:50%;transform:translateX(-50%)">CERULEAN ✶ TRANSMISSION</div>
-      <div class="lbl" style="top:30%;left:8%">◆ PIRATE SIGNAL</div>
-      <div class="lbl" style="top:30%;right:22%">ACTIVE VIEWER 0001</div>
-      <div class="lbl" style="bottom:18%;left:50%;transform:translateX(-50%)">NO LICENSE ✶ NO REFUNDS ✶ NO SIGNAL</div>
-      <div class="lbl big" style="bottom:9%;left:8%">0031</div>
-      <div class="barcodes"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-    </div>
+  <!-- data column down the right edge (filled by script.js) -->
+  <div class="datacol" aria-hidden="true"><div class="datacol-track" id="datacol"></div></div>
 
-    <!-- CH 02: red / yellow crossed circles + radar pings -->
-    <div class="ch ch-red" data-layer="red">
-      <div class="ping"></div><div class="ping p2"></div><div class="ping p3"></div>
-      <div class="halftone"></div>
-      <div class="red-stripe"></div>
-    </div>
+  <!-- faint registration marks -->
+  <svg class="mark m1" viewBox="-20 -20 40 40" aria-hidden="true"><circle r="11"/><path d="M-18 0H18M0 -18V18M-8 -8L8 8M8 -8L-8 8"/></svg>
+  <svg class="mark m2" viewBox="-20 -20 40 40" aria-hidden="true"><path d="M-10 0H10M0 -10V10"/></svg>
+  <svg class="mark m3" viewBox="-20 -20 40 40" aria-hidden="true"><path d="M-10 0H10M0 -10V10"/></svg>
 
-    <!-- CH 03: black + chrome gradient arrows -->
-    <div class="ch ch-black" data-layer="black">
-      <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
-        <defs>
-          <linearGradient id="gh" x1="0" x2="1"><stop offset="0" stop-color="#fff"/><stop offset=".55" stop-color="#9a9a9a"/><stop offset="1" stop-color="#111"/></linearGradient>
-          <linearGradient id="gv" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#111"/><stop offset=".5" stop-color="#bbb"/><stop offset="1" stop-color="#fff"/></linearGradient>
-          <path id="arw" d="M0 -26 H230 V-62 L330 0 L230 62 V26 H0 Z"/>
-        </defs>
-        <g class="arr a1"><use href="#arw" fill="url(#gh)" transform="translate(180 210)"/></g>
-        <g class="arr a2"><use href="#arw" fill="url(#gh)" transform="translate(1420 430) rotate(180)"/></g>
-        <g class="arr a3"><use href="#arw" fill="url(#gh)" transform="translate(240 520) rotate(28)"/></g>
-        <g class="arr a4"><use href="#arw" fill="url(#gv)" transform="translate(1260 120) rotate(90)"/></g>
-        <g class="arr a5"><path d="M600 760 H1300 V640" fill="none" stroke="url(#gh)" stroke-width="46"/></g>
-        <g fill="#fff" class="bars"><rect x="560" y="200" width="420" height="10"/><rect x="560" y="226" width="300" height="4"/><rect x="700" y="470" width="520" height="10"/></g>
-      </svg>
-      <div class="gib" id="gib"></div>
-    </div>
+  <main class="slate">
+    <p class="lbl lbl-top">Cerulean&nbsp;&nbsp;Broadcast&nbsp;&nbsp;System</p>
 
-    <!-- CH 04: synthwave grid + sun -->
-    <div class="ch ch-grid" data-layer="synth">
-      <div class="sun"></div>
-      <div class="floor"></div>
-      <div class="kanji" data-text="青">青</div>
-      <div class="kata">セルリアン</div>
-    </div>
-
-    <!-- CH 05: night vision -->
-    <div class="ch ch-nv" data-layer="nv">
-      <div class="nv-blob"></div>
-      <div class="nv-noise"></div>
-      <div class="nv-txt" style="top:16%;left:10%">OBJ-07 TRACKING<br>RNG 0.42 KM<br>ALT 0012 M<br>MODE: THERMAL</div>
-      <div class="nv-txt" style="top:16%;right:10%;text-align:right">SECTOR CR-05<br>WIND 03 NNE<br>GAIN ▮▮▮▮▯</div>
-      <div class="nv-txt big" style="bottom:12%;left:10%">TGT 77071</div>
-      <div class="nv-vignette"></div>
-    </div>
-
-    <!-- CH 06: pink code + dials -->
-    <div class="ch ch-code" data-layer="code">
-      <div class="code-cols" id="code-cols"></div>
-      <svg class="dial" viewBox="-100 -100 200 200">
-        <circle r="92" fill="none" stroke="#ffd1f3" stroke-width="10" stroke-dasharray="14 5" opacity=".75"/>
-        <circle r="74" fill="none" stroke="#ff6fd8" stroke-width="18" stroke-dasharray="60 20 20 20" opacity=".8"/>
-        <circle r="54" fill="none" stroke="#fff" stroke-width="1"/>
-        <circle r="40" fill="none" stroke="#ffd1f3" stroke-width="6" stroke-dasharray="2 4"/>
-      </svg>
-    </div>
-  </div>
-
-  <!-- TV overlays -->
-  <div class="osd" id="osd" aria-hidden="true">CH --</div>
-  <div class="bug" aria-hidden="true"><svg viewBox="-50 -50 100 100"><circle r="44" fill="none" stroke="#fff" stroke-width="6"/><path d="M18 -18 A26 26 0 1 0 18 18" fill="none" stroke="#fff" stroke-width="12"/></svg></div>
-  <div class="static" aria-hidden="true"></div>
-
-  <div class="burst" aria-hidden="true"><div class="burst-rays"></div><div class="burst-core"></div></div>
-  <svg class="hud" viewBox="-110 -110 220 220" aria-hidden="true">
-    <defs>
-      <path id="hud-text-path" d="M -64 0 A 64 64 0 1 1 64 0 A 64 64 0 1 1 -64 0"/>
-    </defs>
-    <g class="hud-spin s1"><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="60s" repeatCount="indefinite"/><circle r="96" class="thin" stroke-dasharray="0.6 3.4"/><circle r="100" class="hair"/></g>
-    <g class="hud-spin s2"><animateTransform attributeName="transform" type="rotate" from="0" to="-360" dur="26s" repeatCount="indefinite"/>
-      <circle r="84" class="hair"/>
-      <circle r="78" class="seg" stroke-dasharray="22 6"/>
-    </g>
-    <circle r="78" class="fill" id="hud-fill" transform="rotate(-90)"/>
-    <g class="hud-spin s3"><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="40s" repeatCount="indefinite"/>
-      <text class="ring-text"><textPath href="#hud-text-path">CERULEAN ✶ CERULEAN ✶ CERULEAN ✶ CERULEAN ✶ </textPath></text>
-    </g>
-    <g class="hud-spin s4"><animateTransform attributeName="transform" type="rotate" from="0" to="-360" dur="12s" repeatCount="indefinite"/><circle r="50" class="thin" stroke-dasharray="10 5 2 5"/></g>
-    <circle r="16" class="thin"/>
-    <circle r="3" class="dot"/>
-    <g class="cross"><line x1="-110" y1="0" x2="-58" y2="0"/><line x1="58" y1="0" x2="110" y2="0"/><line x1="0" y1="-110" x2="0" y2="-58"/><line x1="0" y1="58" x2="0" y2="110"/></g>
-    <g class="brackets"><path d="M-104 -84 v-20 h20"/><path d="M104 -84 v-20 h-20"/><path d="M-104 84 v20 h20"/><path d="M104 84 v20 h-20"/></g>
-    <text class="readout" x="-104" y="-90">SECTOR CR-01</text>
-    <text class="readout" x="104" y="-90" text-anchor="end" id="hud-pct">SIG 000</text>
-    <text class="readout" x="-104" y="98">◉ LIVE</text>
-    <text class="readout" x="104" y="98" text-anchor="end">VOL.01</text>
-  </svg>
-  <div class="scan" aria-hidden="true"></div>
-
-  <!-- live 3D layer (objects are pinned to the .obj anchors below) -->
-  <canvas id="scene" aria-hidden="true"></canvas>
-  <div class="grain" aria-hidden="true"></div>
-
-  <!-- poster furniture -->
-  <div class="reg tl" aria-hidden="true"></div>
-  <div class="reg tr" aria-hidden="true"></div>
-  <div class="reg bl" aria-hidden="true"></div>
-  <div class="reg br" aria-hidden="true"></div>
-
-  <header class="topbar">
-    <span>cerulean</span>
-    <span class="topbar-mid">VOL.01 — LINKS</span>
-    <span class="progress" id="ch-label" aria-hidden="true">CH 00 ROOTS</span>
-  </header>
-
-  <p class="side-jp" aria-hidden="true">セルリアン・リンク集・二〇二六</p>
-  <p class="side-en" aria-hidden="true">Est. 2026 ✶ larprulean.github.io ✶ Est. 2026</p>
-
-  <main class="page" id="top">
-    <section class="hero">
-      <div class="obj obj-hero" data-obj="c" data-mat="chrome" data-hero aria-hidden="true">
-        <svg class="c-ring" viewBox="-100 -100 200 200">
-          <defs><path id="c-ring-path" d="M -82 0 A 82 82 0 1 1 82 0 A 82 82 0 1 1 -82 0"/></defs>
-          <circle r="96" fill="none" stroke="#0a84c6" stroke-width="1.2" opacity=".55"/>
-          <circle r="70" fill="none" stroke="#0a84c6" stroke-width="1.2" opacity=".35"/>
-          <g><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="18s" repeatCount="indefinite"/>
-            <text class="c-ring-text"><textPath href="#c-ring-path">CERULEAN ✶ CERULEAN ✶ CERULEAN ✶ CERULEAN ✶ </textPath></text>
-          </g>
-        </svg>
-      </div>
-      <h1 class="title" aria-label="cerulean">
-        <span class="word stripe" data-text="CERULEAN" aria-hidden="true">CERULEAN</span>
-      </h1>
-      <p class="tagline"><span class="tag-box">@larprulean</span> links / profiles / misc.</p>
-
-      <svg class="doodle" viewBox="0 0 220 160" aria-hidden="true">
-        <path class="dd" d="M200 18 C 150 10, 110 40, 96 86 C 90 104, 88 118, 84 132"/>
-        <path class="dd" d="M66 116 L 84 136 L 100 112"/>
-        <g class="dd-fig" transform="translate(178 70)">
-          <circle class="dd" cx="0" cy="-26" r="10"/>
-          <path class="dd" d="M0 -16 L 0 14 M -16 -6 L 0 -2 L 16 -10 M 0 14 L -12 34 M 0 14 L 12 34"/>
+    <div class="title-row">
+      <h1 class="title">CERULEAN</h1>
+      <svg class="emblem" viewBox="-100 -100 200 200" aria-hidden="true">
+        <defs><path id="em-path" d="M -71 0 A 71 71 0 1 1 71 0 A 71 71 0 1 1 -71 0"/></defs>
+        <circle r="93" class="em-thick"/>
+        <circle r="50" class="em-thin"/>
+        <g class="em-spin">
+          <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="16s" repeatCount="indefinite"/>
+          <text class="em-text"><textPath href="#em-path" textLength="440" lengthAdjust="spacing">CERULEAN ✶ CERULEAN ✶ CERULEAN ✶</textPath></text>
         </g>
+        <path class="em-c" d="M20 -21 A29 29 0 1 0 20 21"/>
       </svg>
+      <p class="lbl lbl-side">@larprulean</p>
+    </div>
+    <div class="mini-icons" aria-hidden="true"><span>◎</span><span>◎</span></div>
 
-      <ul class="links">
-        <li>
-          <a class="link" href="https://github.com/larprulean" target="_blank" rel="noopener">
-            <span class="link-num">01</span>
-            <span class="link-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5Z"/></svg></span>
-            <span class="link-text"><span class="link-name">GitHub</span><span class="link-sub">larprulean</span></span>
-            <span class="link-arrow" aria-hidden="true">↗</span>
-          </a>
-        </li>
-        <li>
-          <a class="link" href="https://www.linkedin.com/in/cameron-crawford-57b349375" target="_blank" rel="noopener">
-            <span class="link-num">02</span>
-            <span class="link-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg></span>
-            <span class="link-text"><span class="link-name">LinkedIn</span><span class="link-sub">professional profile</span></span>
-            <span class="link-arrow" aria-hidden="true">↗</span>
-          </a>
-        </li>
-      </ul>
-    </section>
+    <p class="lbl lbl-bottom">Pirate&nbsp;&nbsp;Signal</p>
+    <p class="lbl lbl-tiny">viewer&nbsp;&nbsp;discretion&nbsp;&nbsp;advised</p>
 
+    <ul class="links">
+      <li>
+        <a class="link" href="https://github.com/larprulean" target="_blank" rel="noopener">
+          <span class="link-num">01</span>
+          <svg class="link-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5Z"/></svg>
+          <span class="link-name">GitHub</span>
+          <span class="link-bar" aria-hidden="true"></span>
+          <span class="link-sub">larprulean</span>
+        </a>
+      </li>
+      <li>
+        <a class="link" href="https://www.linkedin.com/in/cameron-crawford-57b349375" target="_blank" rel="noopener">
+          <span class="link-num">02</span>
+          <svg class="link-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>
+          <span class="link-name">LinkedIn</span>
+          <span class="link-bar" aria-hidden="true"></span>
+          <span class="link-sub">profile</span>
+        </a>
+      </li>
+    </ul>
   </main>
 
-  <!-- theme remote -->
-  <nav class="remote" aria-label="Choose a theme">
-    <button class="rm-step" type="button" data-step="-1" aria-label="Previous theme">◀</button>
-    <div class="rm-list" role="radiogroup" aria-label="Themes">
-      <button type="button" role="radio" data-theme="roots"><b>00</b><span>Roots</span></button>
-      <button type="button" role="radio" data-theme="signal"><b>01</b><span>Signal</span></button>
-      <button type="button" role="radio" data-theme="lime"><b>02</b><span>Acid</span></button>
-      <button type="button" role="radio" data-theme="red"><b>03</b><span>Alert</span></button>
-      <button type="button" role="radio" data-theme="black"><b>04</b><span>Chrome</span></button>
-      <button type="button" role="radio" data-theme="synth"><b>05</b><span>Sunset</span></button>
-      <button type="button" role="radio" data-theme="nv"><b>06</b><span>Night</span></button>
-      <button type="button" role="radio" data-theme="code"><b>07</b><span>Pink</span></button>
-    </div>
-    <button class="rm-step" type="button" data-step="1" aria-label="Next theme">▶</button>
-  </nav>
-
+  <!-- station bug -->
+  <svg class="bug" viewBox="-50 -50 100 100" aria-hidden="true"><circle r="42"/><path d="M17 -17 A24 24 0 1 0 17 17"/></svg>
 
   <script src="script.js"></script>
-  <script src="vendor/three.min.js" defer></script>
-  <script src="scene.js" defer></script>
 </body>
 </html>
