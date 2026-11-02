@@ -59,12 +59,10 @@ ul { list-style: none; }
 .lbl-bottom { margin-top: clamp(1.6rem, 5vh, 3.8rem); }
 .lbl-tiny { font-size: clamp(.45rem, .7vw, .6rem); letter-spacing: .3em; margin-top: .5rem; }
 
-.title-row { position: relative; display: flex; align-items: center; justify-content: center; gap: .14em; font-size: clamp(3.2rem, 15.5vw, 13rem); }
-.title {
-  font-family: var(--title); font-weight: 700; font-size: 1em; line-height: .82;
-  letter-spacing: .005em; white-space: nowrap; color: var(--red);
-  transform: scaleY(1.08);
-}
+.title-row { position: relative; display: flex; align-items: center; justify-content: center; gap: .1em; font-size: clamp(2.6rem, 14vw, 12rem); }
+.title { font-size: 1em; line-height: 0; }
+.wordmark { display: block; height: 1.32em; width: auto; aspect-ratio: 1110 / 320; overflow: visible; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .emblem { width: .86em; height: .86em; flex: none; overflow: visible; }
 .em-thick { fill: none; stroke: var(--red); stroke-width: 12; }
 .em-thin  { fill: none; stroke: var(--red); stroke-width: 4; }
@@ -114,7 +112,7 @@ ul { list-style: none; }
 /* ---------- small screens ---------- */
 @media (max-width: 700px) {
   .slate { padding: 2.5rem 58px 4.5rem 14px; }
-  .title-row { font-size: clamp(2.6rem, 15vw, 6rem); }
+  .title-row { font-size: clamp(2.2rem, 13.5vw, 6rem); }
   .datacol { opacity: .7; width: 40px; right: 8px; }
   .drow .mini, .drow .num { display: none; }
   .lbl-side { top: -1.9em; }
