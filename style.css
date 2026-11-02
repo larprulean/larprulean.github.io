@@ -1,6 +1,9 @@
 :root {
-  --canvas: #101113;
-  --surface: #181a1e;
+  --canvas: #1b1b1b;
+  --surface: #222222;
+  --cell: 64px;
+  --grid-line: rgb(255 255 255 / 0.07);
+  --grid-lit: rgb(108 195 232 / 0.55);
   --ink: #f1f2ee;
   --muted: #a1a5a6;
   --faint: #6d7274;
@@ -29,7 +32,7 @@ svg { width: 1.1em; height: 1.1em; fill: currentColor; }
 /* NAV */
 .nav {
   position: sticky; top: 0; z-index: 50;
-  background: rgb(16 17 19 / 0.78);
+  background: rgb(27 27 27 / 0.72);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line-subtle);
@@ -55,7 +58,56 @@ svg { width: 1.1em; height: 1.1em; fill: currentColor; }
 
 /* BLANK CANVAS — total page matches omniroute.online scroll length
    (~24.5k px desktop, ~35k px phone) */
-.canvas { position: relative; min-height: 24350px; overflow: hidden; }
+.canvas { position: relative; z-index: 1; min-height: 24350px; overflow: hidden; }
+
+/* ANIMATED GRID BACKGROUND */
+.grid-bg, .grid-spot {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden;
+}
+/* fade the grid out toward the edges, like the reference */
+.grid-bg {
+  -webkit-mask-image: radial-gradient(ellipse 75% 70% at 50% 45%, #000 35%, transparent 100%);
+          mask-image: radial-gradient(ellipse 75% 70% at 50% 45%, #000 35%, transparent 100%);
+}
+/* brighter cerulean lines only around the cursor */
+.grid-spot {
+  --mx: 50%; --my: 40%;
+  -webkit-mask-image: radial-gradient(220px circle at var(--mx) var(--my), #000 0%, transparent 100%);
+          mask-image: radial-gradient(220px circle at var(--mx) var(--my), #000 0%, transparent 100%);
+}
+.grid-drift {
+  position: absolute; inset: calc(var(--cell) * -1);
+  animation: drift 10s linear infinite;
+}
+.grid-lines {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: var(--cell) var(--cell);
+}
+.grid-spot .grid-lines {
+  background-image:
+    linear-gradient(to right, var(--grid-lit) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-lit) 1px, transparent 1px);
+}
+@keyframes drift {
+  from { transform: translate(0, 0); }
+  to   { transform: translate(var(--cell), var(--cell)); }
+}
+/* random cells that softly light up */
+.flash {
+  position: absolute; width: calc(var(--cell) - 1px); height: calc(var(--cell) - 1px);
+  background: rgb(108 195 232 / 0.09);
+  box-shadow: inset 0 0 0 1px rgb(108 195 232 / 0.18);
+  opacity: 0;
+}
+.flash.on { animation: flash 2.6s ease-in-out forwards; }
+@keyframes flash {
+  0%   { opacity: 0; }
+  35%  { opacity: 1; }
+  100% { opacity: 0; }
+}
 
 .hero-glow {
   position: absolute; top: 0; left: 0; right: 0; height: 100vh; pointer-events: none;
@@ -110,7 +162,7 @@ svg { width: 1.1em; height: 1.1em; fill: currentColor; }
 }
 
 /* FOOTER */
-.footer { border-top: 1px solid var(--line-subtle); padding: 2.5rem 0; }
+.footer { position: relative; z-index: 1; border-top: 1px solid var(--line-subtle); padding: 2.5rem 0; background: rgb(27 27 27 / 0.85); }
 .footer-inner {
   max-width: var(--container); margin: 0 auto; padding: 0 1.5rem;
   display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap;
@@ -127,4 +179,5 @@ svg { width: 1.1em; height: 1.1em; fill: currentColor; }
   html { scroll-behavior: auto; }
   .end.in .still-here { animation: none; opacity: 1; transform: none; }
   .end.in .dot { animation: none; }
+  .grid-drift, .flash.on { animation: none; }
 }
