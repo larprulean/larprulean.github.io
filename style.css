@@ -379,7 +379,7 @@ ul { list-style: none; }
 .c-ring { position: absolute; inset: -22%; width: 144%; height: 144%; overflow: visible; }
 .c-ring-text { font-family: var(--display); font-size: 13px; letter-spacing: .18em; fill: #121212; }
 
-.doodle { position: absolute; left: calc(50% + 15rem); top: 60%; width: clamp(120px, 16vw, 220px); overflow: visible; pointer-events: none; }
+.doodle { position: absolute; left: calc(50% + 15rem); top: 66%; width: clamp(120px, 16vw, 220px); overflow: visible; pointer-events: none; }
 .doodle .dd { fill: none; stroke: #121212; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 400; stroke-dashoffset: 400; animation: draw 1.4s ease-out .3s forwards; }
 .dd-fig { animation: wave 1.2s ease-in-out 1.8s infinite; transform-box: fill-box; }
 @keyframes draw { to { stroke-dashoffset: 0; } }
