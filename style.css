@@ -1,6 +1,5 @@
 /* Fonts hosted with the site (SIL Open Font License, see /fonts) */
 @font-face { font-family: "Barlow Condensed"; src: url("fonts/barlow-condensed-700.woff2") format("woff2"); font-weight: 700; font-display: swap; }
-@font-face { font-family: "Courier Prime"; src: url("fonts/courier-prime-700.woff2") format("woff2"); font-weight: 700; font-display: swap; }
 @font-face { font-family: "Michroma"; src: url("fonts/michroma-400.woff2") format("woff2"); font-weight: 400; font-display: swap; }
 
 :root {
@@ -11,7 +10,6 @@
   --sky: linear-gradient(180deg, #24223a 0%, #3e3a5e 45%, #6b6593 78%, #8f89b2 100%);
   --title: "Barlow Condensed", "Arial Narrow", Impact, sans-serif;
   --label: "Michroma", "Eurostile", "Arial", sans-serif;
-  --type: "Courier Prime", "Courier New", monospace;
   color-scheme: dark;
 }
 
@@ -66,7 +64,7 @@ ul { list-style: none; }
 .em-thin  { fill: none; stroke: var(--red); stroke-width: 4; }
 .em-c     { fill: none; stroke: var(--red); stroke-width: 17; stroke-linecap: butt; }
 .em-text  { font-family: var(--label); font-size: 12.5px; fill: var(--red); }
-.lbl-side { position: absolute; right: 0; top: -1.7em; font-family: var(--type); font-weight: 700; font-size: clamp(.62rem, .95vw, .85rem); letter-spacing: .3em; text-transform: lowercase; }
+.lbl-side { position: absolute; right: 0; top: -1.6em; font-size: clamp(.5rem, .8vw, .7rem); letter-spacing: .22em; text-transform: lowercase; }
 
 .mini-icons { display: flex; gap: .35rem; margin-top: .4rem; font-size: .7rem; opacity: .75; transform: translateX(min(31vw, 4.6em)); }
 
@@ -79,7 +77,7 @@ ul { list-style: none; }
 }
 .link-num { font-size: .62rem; letter-spacing: .14em; }
 .link-ic { width: 1.05rem; height: 1.05rem; fill: currentColor; }
-.link-name { font-family: var(--type); font-weight: 700; font-size: 1.15rem; line-height: 1; letter-spacing: .28em; text-transform: lowercase; }
+.link-name { font-family: var(--label); font-weight: 400; font-size: .9rem; line-height: 1; letter-spacing: .2em; text-transform: lowercase; }
 .link-bar { height: 5px; background: linear-gradient(90deg, currentColor 0 68%, var(--red-soft) 68% 100%); min-width: 20px; }
 .link:hover .link-bar, .link:focus-visible .link-bar { background: linear-gradient(90deg, currentColor 0 68%, rgb(20 18 28 / .35) 68% 100%); }
 .link-sub { font-size: .58rem; letter-spacing: .18em; text-transform: uppercase; }
@@ -112,7 +110,7 @@ ul { list-style: none; }
   .mini-icons { transform: none; }
   .links { width: 100%; }
   .link { gap: .55rem; padding: .5rem .6rem; }
-  .link-name { font-size: 1rem; letter-spacing: .2em; }
+  .link-name { font-size: .78rem; letter-spacing: .14em; }
 }
 
 @media (prefers-reduced-motion: reduce) {
