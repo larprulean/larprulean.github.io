@@ -75,7 +75,7 @@
   }
 
   // C — nested rings, open on the right
-  rings({ cx: 100, cy: 182, rMax: 116, rMin: 38, step: 9.5, a0: 38, a1: 322 });
+  tube('M176 96 C144 62 66 64 46 132 C30 190 46 262 106 284 C140 296 168 284 184 264', { w: 36, depth: 16, rot: 3, cx: 110, cy: 180 });
   // E — chunky inflated
   tube('M296 78 C262 70 232 70 214 76 C210 120 208 150 210 178 M212 178 C236 176 258 176 282 172 M210 180 C206 220 204 252 206 284 C236 290 268 290 300 286', { w: 34, depth: 15, rot: -3, cx: 255, cy: 180 });
   // R — thin wire
@@ -90,6 +90,36 @@
   tube('M808 292 L862 58 L920 292 M834 208 C856 204 876 204 896 206', { w: 10, depth: 12 });
   // N — wide inflated
   tube('M948 294 C946 220 948 150 952 76 C984 146 1024 214 1058 284 C1062 210 1064 140 1068 64', { w: 34, depth: 16, rot: -2, cx: 1008, cy: 180 });
+
+  // ---- emblem: rotating 3D spiral inside the CERULEAN text ring ----
+  const spiralHost = document.getElementById('em-spiral');
+  if (spiralHost) {
+    const pts = [];
+    const turns = 4.2, steps = 700, r0 = 4, r1 = 58;
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps, a = t * turns * Math.PI * 2, r = r0 + (r1 - r0) * t;
+      pts.push((i ? 'L' : 'M') + (Math.cos(a) * r).toFixed(2) + ' ' + (Math.sin(a) * r).toFixed(2));
+    }
+    const d = pts.join('');
+    const fs = el('filter', { id: 'xerox-sm', x: '-10%', y: '-10%', width: '120%', height: '120%' }, defs);
+    el('feTurbulence', { type: 'fractalNoise', baseFrequency: '0.05', numOctaves: '2', seed: '3', result: 'w' }, fs);
+    el('feDisplacementMap', { in: 'SourceGraphic', in2: 'w', scale: '2.2', xChannelSelector: 'R', yChannelSelector: 'G' }, fs);
+    const wrap = el('g', { filter: 'url(#xerox-sm)' }, spiralHost);
+    const spinning = (parent, attrs) => {
+      const g = el('g', {}, parent);
+      if (!reduce) el('animateTransform', { attributeName: 'transform', type: 'rotate', from: '0', to: '-360', dur: '9s', repeatCount: 'indefinite' }, g);
+      el('path', { d, fill: 'none', 'stroke-linecap': 'round', ...attrs }, g);
+    };
+    const depth = 5;
+    for (let k = depth; k >= 1; k--) {
+      const off = el('g', { transform: `translate(${k * 1.1} ${k * 1.05})` }, wrap);
+      spinning(off, { stroke: mix(COL.sideNear, COL.sideFar, (k - 1) / depth), 'stroke-width': 9 });
+    }
+    spinning(wrap, { stroke: COL.outline, 'stroke-width': 9.5 });
+    spinning(wrap, { stroke: COL.face, 'stroke-width': 6.4 });
+    const hiG = el('g', { transform: 'translate(-1.3 -1.3)' }, wrap);
+    spinning(hiG, { stroke: COL.hi, 'stroke-opacity': .75, 'stroke-width': 1.8 });
+  }
 
   // line boil: swap noise seeds a few times a second
   if (!reduce) {
