@@ -62,7 +62,6 @@ ul { list-style: none; }
 .obj { position: absolute; aspect-ratio: 1; pointer-events: none; }
 .obj-hero { position: relative; width: clamp(110px, 21vh, 200px); margin-bottom: .9rem; }
 .obj-end { position: absolute; left: 50%; top: 50%; width: min(78vw, 560px); transform: translate(-50%, -50%); }
-.still-here { position: relative; }
 
 /* paper grain */
 .grain {
@@ -243,6 +242,124 @@ ul { list-style: none; }
 }
 @keyframes roll { to { transform: translateY(130vh); } }
 
+/* ================= BROADCAST CHANNELS ================= */
+.channels { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
+.ch { position: absolute; inset: 0; overflow: hidden; opacity: 0; visibility: hidden; }
+
+/* CH 01 — acid lime slate */
+.ch-lime {
+  background-color: #d4f13b;
+  background-image:
+    linear-gradient(rgb(228 50 43 / .16) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(228 50 43 / .16) 1px, transparent 1px);
+  background-size: 48px 48px;
+  color: #e4322b;
+}
+.lime-mark { position: absolute; left: 50%; top: 50%; width: min(52vmin, 460px); transform: translate(-50%, -50%); animation: spin 30s linear infinite; }
+.lbl { position: absolute; font-family: var(--mono); font-weight: 700; font-size: clamp(.6rem, 1.1vw, .85rem); letter-spacing: .2em; white-space: nowrap; }
+.lbl.big { font-family: var(--display); font-size: clamp(2rem, 6vw, 4.5rem); letter-spacing: 0; }
+.barcodes { position: absolute; right: 4vw; top: 12vh; display: flex; flex-direction: column; gap: 3.2vh; }
+.barcodes i {
+  display: block; width: clamp(60px, 9vw, 140px); height: clamp(14px, 2.6vh, 26px);
+  background: repeating-linear-gradient(90deg, #e4322b 0 3px, transparent 3px 5px, #e4322b 5px 6px, transparent 6px 9px, #e4322b 9px 13px, transparent 13px 15px);
+  animation: bars 1.6s steps(6) infinite;
+}
+.barcodes i:nth-child(even) { width: clamp(40px, 6vw, 96px); animation-duration: 2.3s; }
+@keyframes bars { to { background-position: 60px 0; } }
+
+/* CH 02 — red with yellow crossed circles */
+.ch-red {
+  background-color: #e4322b;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cg fill='none' stroke='%23f2cf1d' stroke-width='2.2'%3E%3Ccircle cx='45' cy='45' r='30'/%3E%3Cline x1='4' y1='62' x2='86' y2='28'/%3E%3Ccircle cx='135' cy='135' r='30'/%3E%3Cline x1='94' y1='152' x2='176' y2='118'/%3E%3C/g%3E%3C/svg%3E");
+  animation: drift 14s linear infinite;
+}
+@keyframes drift { to { background-position: 180px 180px; } }
+.ping { position: absolute; left: 50%; top: 50%; width: 30vmin; height: 30vmin; margin: -15vmin 0 0 -15vmin; border-radius: 50%; border: 8px solid #f2cf1d; animation: ping 3s cubic-bezier(.2,.7,.3,1) infinite; }
+.ping.p2 { animation-delay: 1s; } .ping.p3 { animation-delay: 2s; }
+@keyframes ping { 0% { transform: scale(.1); opacity: 1; } 100% { transform: scale(4.5); opacity: 0; } }
+.halftone { position: absolute; inset: 0; background: radial-gradient(circle, #121212 1.6px, transparent 2.2px) 0 0 / 14px 14px;
+  -webkit-mask-image: linear-gradient(135deg, #000 0%, transparent 35%, transparent 65%, #000 100%); mask-image: linear-gradient(135deg, #000 0%, transparent 35%, transparent 65%, #000 100%); opacity: .5; }
+.red-stripe { position: absolute; left: -10%; right: -10%; top: 62%; height: 9vh; background: repeating-linear-gradient(-45deg, #121212 0 18px, #f2cf1d 18px 36px); transform: rotate(-6deg); animation: hazard 1.2s linear infinite; border-block: 4px solid #121212; }
+@keyframes hazard { to { background-position: 51px 0; } }
+
+/* CH 03 — black + chrome arrows */
+.ch-black { background: #050505; }
+.ch-black svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.arr { animation: nudge 1.8s ease-in-out infinite; }
+.arr.a2 { animation-direction: reverse; animation-delay: .3s; } .arr.a3 { animation-delay: .6s; } .arr.a4 { animation-delay: .9s; } .arr.a5 { animation-delay: 1.2s; }
+@keyframes nudge { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(26px, 0); } }
+.bars rect { animation: blink 2.4s steps(2) infinite; }
+@keyframes blink { 50% { opacity: .2; } }
+.gib { position: absolute; left: 4vw; right: 4vw; bottom: 6vh; font-family: var(--mono); font-size: clamp(.55rem, 1vw, .8rem); letter-spacing: .3em; color: #fff; white-space: nowrap; overflow: hidden; }
+
+/* CH 04 — synthwave grid */
+.ch-grid { background: linear-gradient(#07001a 0%, #1d0047 35%, #6a007a 49.5%, #ff2fa0 50%, #07001a 50.2%); }
+.sun {
+  position: absolute; left: 50%; top: 50%; width: min(56vmin, 520px); height: min(56vmin, 520px); transform: translate(-50%, -78%);
+  border-radius: 50%; background: linear-gradient(#ffe36e 10%, #ff7a3d 45%, #ff2fa0 75%);
+  -webkit-mask-image: linear-gradient(#000 52%, transparent 52% 56%, #000 56% 62%, transparent 62% 67%, #000 67% 73%, transparent 73% 79%, #000 79% 84%, transparent 84% 90%, #000 90%);
+          mask-image: linear-gradient(#000 52%, transparent 52% 56%, #000 56% 62%, transparent 62% 67%, #000 67% 73%, transparent 73% 79%, #000 79% 84%, transparent 84% 90%, #000 90%);
+  filter: drop-shadow(0 0 40px #ff2fa0);
+}
+.floor {
+  position: absolute; left: -60%; right: -60%; top: 50%; height: 120%;
+  transform-origin: top center; transform: perspective(380px) rotateX(72deg);
+  background-image: linear-gradient(#2ff3ff 2px, transparent 2px), linear-gradient(90deg, #2ff3ff 2px, transparent 2px);
+  background-size: 70px 70px;
+  -webkit-mask-image: linear-gradient(transparent 0%, #000 30%); mask-image: linear-gradient(transparent 0%, #000 30%);
+  filter: drop-shadow(0 0 6px #2ff3ff);
+  animation: floor .7s linear infinite;
+}
+@keyframes floor { to { background-position: 0 70px; } }
+.kanji { position: absolute; left: 6vw; top: 12vh; font-family: var(--display); font-size: clamp(7rem, 26vmin, 20rem); line-height: 1; color: #e4322b; text-shadow: .03em .03em 0 #2ff3ff, -.03em -.02em 0 #f2cf1d; }
+.kata { position: absolute; right: 5vw; top: 10vh; writing-mode: vertical-rl; font-family: var(--display); font-size: clamp(1.6rem, 5vmin, 3.4rem); color: #fff; letter-spacing: .1em; text-shadow: 0 0 12px #ff2fa0; }
+
+/* CH 05 — night vision */
+.ch-nv { background: radial-gradient(circle at 50% 50%, #2a8a36 0%, #0a3d14 45%, #021206 100%); color: #6dff8c; }
+.nv-blob {
+  position: absolute; left: 50%; top: 52%; width: 44vmin; height: 28vmin; transform: translate(-50%, -50%) rotate(-18deg);
+  background: radial-gradient(ellipse, #eaffef 0%, #9dffb2 25%, #2fd55a 55%, transparent 72%);
+  filter: blur(3px) drop-shadow(0 0 30px #6dff8c);
+  animation: blob 5s ease-in-out infinite;
+}
+@keyframes blob { 0%,100% { border-radius: 40% 60% 55% 45% / 50% 40% 60% 50%; transform: translate(-50%,-50%) rotate(-18deg) scale(1); } 50% { border-radius: 60% 40% 45% 55% / 40% 60% 40% 60%; transform: translate(-50%,-50%) rotate(-10deg) scale(1.12); } }
+.nv-noise { position: absolute; inset: -20%; opacity: .35; mix-blend-mode: screen;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='2'/><feColorMatrix values='0 0 0 0 .4  0 0 0 0 1  0 0 0 0 .5  0 0 0 1.4 -.4'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  animation: grain .4s steps(3) infinite; }
+.nv-txt { position: absolute; font-family: var(--mono); font-size: clamp(.6rem, 1.1vw, .85rem); line-height: 1.6; letter-spacing: .14em; text-shadow: 0 0 8px #6dff8c; }
+.nv-txt.big { font-size: clamp(1.4rem, 3vw, 2.4rem); }
+.nv-vignette { position: absolute; inset: 0; background: radial-gradient(circle, transparent 45%, #000 95%); }
+
+/* CH 06 — pink code */
+.ch-code { background: linear-gradient(135deg, #22052a 0%, #5e1458 55%, #c23a8f 100%); }
+.code-cols { position: absolute; inset: 0; display: flex; justify-content: space-between; padding: 0 3vw; opacity: .8; }
+.code-cols div { font-family: var(--mono); font-size: clamp(.55rem, .9vw, .75rem); line-height: 1.5; color: #ffd1f3; white-space: pre; animation: codeup 26s linear infinite; text-shadow: 0 0 6px #ff6fd8; }
+.code-cols div:nth-child(even) { animation-duration: 34s; opacity: .55; }
+@keyframes codeup { to { transform: translateY(-50%); } }
+.dial { position: absolute; right: -8vmin; top: 50%; width: min(70vmin, 640px); transform: translateY(-50%); animation: spin 18s linear infinite; filter: drop-shadow(0 0 10px #ff6fd8); }
+
+/* ================= TV OVERLAYS ================= */
+.rec, .osd, .bug { position: fixed; z-index: 36; pointer-events: none; opacity: var(--tv, 0); transition: opacity .3s; }
+.rec { top: 52px; left: 48px; font-family: var(--mono); font-weight: 700; font-size: .8rem; letter-spacing: .14em; color: #fff; text-shadow: 0 0 6px rgb(0 0 0 / .6); display: flex; align-items: center; gap: .5rem; }
+.rec-dot { width: .7rem; height: .7rem; border-radius: 50%; background: #ff2b2b; box-shadow: 0 0 10px #ff2b2b; animation: blink 1s steps(2) infinite; }
+.osd { top: 48px; right: 48px; font-family: var(--mono); font-weight: 700; font-size: clamp(1.4rem, 3vw, 2.2rem); color: #6dff8c; text-shadow: 0 0 10px #6dff8c, 2px 2px 0 #000; letter-spacing: .08em; }
+.bug { right: 46px; bottom: 34px; width: 58px; height: 58px; opacity: calc(var(--tv, 0) * .75); }
+.bug svg { width: 100%; height: 100%; animation: bugspin 6s linear infinite; filter: drop-shadow(0 0 6px rgb(255 255 255 / .6)); }
+@keyframes bugspin { to { transform: rotateY(360deg); } }
+.static { position: fixed; inset: -10%; z-index: 39; pointer-events: none; opacity: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.6 -.5'/></filter><rect width='100%' height='100%' fill='%23777'/><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  animation: grain .2s steps(3) infinite; }
+.static.on { animation: grain .2s steps(3) infinite, zap .35s ease-out forwards; }
+@keyframes zap { 0% { opacity: .95; } 60% { opacity: .5; } 100% { opacity: 0; } }
+
+@media (max-width: 520px) {
+  .rec { left: 30px; top: 50px; font-size: .68rem; }
+  .osd { right: 30px; top: 46px; }
+  .bug { right: 28px; bottom: 30px; width: 44px; height: 44px; }
+  .barcodes { right: 3vw; top: 9vh; }
+  .lbl:not(.big) { font-size: .55rem; letter-spacing: .12em; }
+}
+
 /* poster furniture flips to light once the page goes dark */
 html.is-dark .reg { box-shadow: inset 0 0 0 1.5px var(--paper); }
 html.is-dark .reg::before, html.is-dark .reg::after { background: var(--paper); }
@@ -254,27 +371,6 @@ html.is-dark .side-jp { color: #ff6fd8; }
 .end {
   position: absolute; left: 0; right: 0; bottom: 0; height: 80vh;
   display: grid; place-items: center;
-}
-.still-here {
-  font-family: var(--display);
-  font-size: clamp(3rem, 12vw, 8rem); line-height: 1;
-  opacity: 0; transform: scale(.2) rotate(-14deg);
-}
-.sh-text { position: relative; display: inline-block; color: var(--ink); }
-.sh-text::before, .sh-text::after {
-  content: attr(data-text); position: absolute; inset: 0; mix-blend-mode: multiply;
-}
-.sh-text::before { color: var(--blue); transform: translate(-.05em, .04em); }
-.sh-text::after  { color: var(--red);  transform: translate(.04em, -.03em); }
-.end.in .still-here { animation: stamp .6s cubic-bezier(.3, 1.8, .5, 1) forwards, wobble 2.4s ease-in-out .7s infinite; }
-@keyframes stamp {
-  0%   { opacity: 0; transform: scale(2.6) rotate(-14deg); }
-  60%  { opacity: 1; transform: scale(.92) rotate(-5deg); }
-  100% { opacity: 1; transform: scale(1) rotate(-6deg); }
-}
-@keyframes wobble {
-  0%, 100% { transform: scale(1) rotate(-6deg); }
-  50%      { transform: scale(1.04) rotate(-4deg); }
 }
 
 /* ---------- FOOTER ---------- */
@@ -300,6 +396,5 @@ html.is-dark .side-jp { color: #ff6fd8; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .ring-layer.b, .grain, .marquee-track, .word::before, .word::after { animation: none; }
-  .burst-rays, .scan::after { animation: none; }
-  .end.in .still-here { animation: none; opacity: 1; transform: rotate(-6deg); }
+  .burst-rays, .scan::after, .ch *, .ch, .bug svg, .rec-dot { animation: none !important; }
 }

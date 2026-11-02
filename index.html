@@ -15,6 +15,86 @@
   </div>
   <!-- broadcast-style scroll graphics -->
   <div class="tint" aria-hidden="true"></div>
+  <!-- broadcast channels: crossfade as you scroll (data-a / data-b = scroll range) -->
+  <div class="channels" aria-hidden="true">
+
+    <!-- CH 01: acid-lime slate -->
+    <div class="ch ch-lime" data-ch="01" data-a="0.20" data-b="0.31" data-hud="#e4322b">
+      <svg class="lime-mark" viewBox="-100 -100 200 200">
+        <circle r="88" fill="none" stroke="#e4322b" stroke-width="3"/>
+        <circle r="74" fill="none" stroke="#e4322b" stroke-width="14"/>
+        <path d="M38 -34 A50 50 0 1 0 38 34" fill="none" stroke="#e4322b" stroke-width="22" stroke-linecap="butt"/>
+        <g stroke="#e4322b" stroke-width="2"><line x1="-100" y1="0" x2="-92" y2="0"/><line x1="92" y1="0" x2="100" y2="0"/><line x1="0" y1="-100" x2="0" y2="-92"/><line x1="0" y1="92" x2="0" y2="100"/></g>
+      </svg>
+      <div class="lbl" style="top:14%;left:50%;transform:translateX(-50%)">CERULEAN ✶ TRANSMISSION</div>
+      <div class="lbl" style="top:30%;left:8%">◆ PIRATE SIGNAL</div>
+      <div class="lbl" style="top:30%;right:22%">ACTIVE VIEWER 0001</div>
+      <div class="lbl" style="bottom:18%;left:50%;transform:translateX(-50%)">NO LICENSE ✶ NO REFUNDS ✶ NO SIGNAL</div>
+      <div class="lbl big" style="bottom:9%;left:8%">0031</div>
+      <div class="barcodes"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    </div>
+
+    <!-- CH 02: red / yellow crossed circles + radar pings -->
+    <div class="ch ch-red" data-ch="02" data-a="0.31" data-b="0.41" data-hud="#f2cf1d">
+      <div class="ping"></div><div class="ping p2"></div><div class="ping p3"></div>
+      <div class="halftone"></div>
+      <div class="red-stripe"></div>
+    </div>
+
+    <!-- CH 03: black + chrome gradient arrows -->
+    <div class="ch ch-black" data-ch="03" data-a="0.41" data-b="0.51" data-hud="#ffffff">
+      <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="gh" x1="0" x2="1"><stop offset="0" stop-color="#fff"/><stop offset=".55" stop-color="#9a9a9a"/><stop offset="1" stop-color="#111"/></linearGradient>
+          <linearGradient id="gv" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#111"/><stop offset=".5" stop-color="#bbb"/><stop offset="1" stop-color="#fff"/></linearGradient>
+          <path id="arw" d="M0 -26 H230 V-62 L330 0 L230 62 V26 H0 Z"/>
+        </defs>
+        <g class="arr a1"><use href="#arw" fill="url(#gh)" transform="translate(180 210)"/></g>
+        <g class="arr a2"><use href="#arw" fill="url(#gh)" transform="translate(1420 430) rotate(180)"/></g>
+        <g class="arr a3"><use href="#arw" fill="url(#gh)" transform="translate(240 520) rotate(28)"/></g>
+        <g class="arr a4"><use href="#arw" fill="url(#gv)" transform="translate(1260 120) rotate(90)"/></g>
+        <g class="arr a5"><path d="M600 760 H1300 V640" fill="none" stroke="url(#gh)" stroke-width="46"/></g>
+        <g fill="#fff" class="bars"><rect x="560" y="200" width="420" height="10"/><rect x="560" y="226" width="300" height="4"/><rect x="700" y="470" width="520" height="10"/></g>
+      </svg>
+      <div class="gib" id="gib"></div>
+    </div>
+
+    <!-- CH 04: synthwave grid + sun -->
+    <div class="ch ch-grid" data-ch="04" data-a="0.51" data-b="0.62" data-hud="#2ff3ff">
+      <div class="sun"></div>
+      <div class="floor"></div>
+      <div class="kanji" data-text="青">青</div>
+      <div class="kata">セルリアン</div>
+    </div>
+
+    <!-- CH 05: night vision -->
+    <div class="ch ch-nv" data-ch="05" data-a="0.62" data-b="0.72" data-hud="#6dff8c">
+      <div class="nv-blob"></div>
+      <div class="nv-noise"></div>
+      <div class="nv-txt" style="top:16%;left:10%">OBJ-07 TRACKING<br>RNG 0.42 KM<br>ALT 0012 M<br>MODE: THERMAL</div>
+      <div class="nv-txt" style="top:16%;right:10%;text-align:right">SECTOR CR-05<br>WIND 03 NNE<br>GAIN ▮▮▮▮▯</div>
+      <div class="nv-txt big" style="bottom:12%;left:10%">TGT 77071</div>
+      <div class="nv-vignette"></div>
+    </div>
+
+    <!-- CH 06: pink code + dials -->
+    <div class="ch ch-code" data-ch="06" data-a="0.72" data-b="0.82" data-hud="#ffd1f3">
+      <div class="code-cols" id="code-cols"></div>
+      <svg class="dial" viewBox="-100 -100 200 200">
+        <circle r="92" fill="none" stroke="#ffd1f3" stroke-width="10" stroke-dasharray="14 5" opacity=".75"/>
+        <circle r="74" fill="none" stroke="#ff6fd8" stroke-width="18" stroke-dasharray="60 20 20 20" opacity=".8"/>
+        <circle r="54" fill="none" stroke="#fff" stroke-width="1"/>
+        <circle r="40" fill="none" stroke="#ffd1f3" stroke-width="6" stroke-dasharray="2 4"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- TV overlays -->
+  <div class="rec" aria-hidden="true"><span class="rec-dot"></span>REC <span id="timecode">00:00:00:00</span></div>
+  <div class="osd" id="osd" aria-hidden="true">CH --</div>
+  <div class="bug" aria-hidden="true"><svg viewBox="-50 -50 100 100"><circle r="44" fill="none" stroke="#fff" stroke-width="6"/><path d="M18 -18 A26 26 0 1 0 18 18" fill="none" stroke="#fff" stroke-width="12"/></svg></div>
+  <div class="static" aria-hidden="true"></div>
+
   <div class="burst" aria-hidden="true"><div class="burst-rays"></div><div class="burst-core"></div></div>
   <svg class="hud" viewBox="-110 -110 220 220" aria-hidden="true">
     <defs>
@@ -119,9 +199,6 @@
 
     <div class="end">
       <div class="obj obj-end" data-obj="globe" data-mat="blue" aria-hidden="true"></div>
-      <p class="still-here" id="still-here">
-        <span class="sh-text" data-text="still here?">still here?</span>
-      </p>
     </div>
   </main>
 
