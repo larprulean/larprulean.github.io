@@ -434,7 +434,7 @@ html[data-theme="signal"] { --hud: #cfe6ff; }
 .doodle .dd { stroke: var(--t-ink); }
 
 /* hero fills the one screen, leaving room for the remote */
-.hero { min-height: 100svh; padding-bottom: 6.5rem; }
+.hero { min-height: 100svh; padding-top: 3.3rem; padding-bottom: 6.3rem; }
 
 /* ================= REMOTE (theme switcher) ================= */
 .remote {
