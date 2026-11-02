@@ -23,9 +23,12 @@
     c.width = c.height = 256;
     const g = c.getContext('2d');
     if (chrome) {
+      const st = chrome === 'gold'
+        ? ['#fff6d0', '#e2b54a', '#5a3a08', '#ffe9a3', '#a8741c', '#2a1a02']
+        : ['#ffffff', '#a9adb3', '#27292d', '#f1eee4', '#777a80', '#141517'];
       const lg = g.createLinearGradient(0, 0, 0, 256);
-      lg.addColorStop(0, '#ffffff'); lg.addColorStop(0.3, '#a9adb3'); lg.addColorStop(0.47, '#27292d');
-      lg.addColorStop(0.53, '#f1eee4'); lg.addColorStop(0.78, '#777a80'); lg.addColorStop(1, '#141517');
+      lg.addColorStop(0, st[0]); lg.addColorStop(0.3, st[1]); lg.addColorStop(0.47, st[2]);
+      lg.addColorStop(0.53, st[3]); lg.addColorStop(0.78, st[4]); lg.addColorStop(1, st[5]);
       g.fillStyle = lg;
     } else {
       g.fillStyle = base;
@@ -49,6 +52,7 @@
     red:    matcap({ base: '#e4322b', dark: 'rgba(60,0,0,.85)',  light: 'rgba(255,190,120,.85)' }),
     yellow: matcap({ base: '#f2cf1d', dark: 'rgba(90,55,0,.8)',  light: 'rgba(255,255,220,.95)' }),
     chrome: matcap({ chrome: true,    dark: 'rgba(0,0,0,.55)',   light: 'rgba(140,215,255,.75)' }),
+    gold:   matcap({ chrome: 'gold',  dark: 'rgba(40,20,0,.6)',  light: 'rgba(255,240,180,.8)' }),
   };
 
   // ---------- geometries (all roughly fit a radius-1 sphere) ----------
@@ -74,6 +78,14 @@
       i ? s.lineTo(x, y) : s.moveTo(x, y);
     }
     const g = new T.ExtrudeGeometry(s, { ...bevel, depth: 0.25, bevelThickness: 0.28, bevelSize: 0.16 });
+    g.center();
+    return g;
+  }
+  function geoArrow() {
+    const s = new T.Shape();
+    s.moveTo(-1, -0.22); s.lineTo(0.15, -0.22); s.lineTo(0.15, -0.52); s.lineTo(1, 0);
+    s.lineTo(0.15, 0.52); s.lineTo(0.15, 0.22); s.lineTo(-1, 0.22); s.closePath();
+    const g = new T.ExtrudeGeometry(s, { bevelEnabled: true, bevelSegments: 6, depth: 0.22, bevelThickness: 0.08, bevelSize: 0.07 });
     g.center();
     return g;
   }
@@ -123,6 +135,7 @@
     let obj;
     if (kind === 'c') obj = new T.Mesh(geoC(), mat);
     else if (kind === 'flower') obj = new T.Mesh(geoFlower(), mat);
+    else if (kind === 'arrow') obj = new T.Mesh(geoArrow(), mat);
     else if (kind === 'knot') obj = new T.Mesh(geoKnot(), mat);
     else if (kind === 'blob') obj = new T.Mesh(geoBlob(), mat);
     else if (kind === 'globe') obj = makeGlobe(mat);

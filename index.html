@@ -13,8 +13,33 @@
     <div class="ring-layer a"></div>
     <div class="ring-layer b"></div>
   </div>
-  <!-- scroll-drawn spiral -->
-  <svg class="spiral" viewBox="-100 -100 200 200" aria-hidden="true"><path id="spiral-path" d="M0 0"/></svg>
+  <!-- broadcast-style scroll graphics -->
+  <div class="tint" aria-hidden="true"></div>
+  <div class="burst" aria-hidden="true"><div class="burst-rays"></div><div class="burst-core"></div></div>
+  <svg class="hud" viewBox="-110 -110 220 220" aria-hidden="true">
+    <defs>
+      <path id="hud-text-path" d="M -64 0 A 64 64 0 1 1 64 0 A 64 64 0 1 1 -64 0"/>
+    </defs>
+    <g class="hud-spin s1"><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="60s" repeatCount="indefinite"/><circle r="96" class="thin" stroke-dasharray="0.6 3.4"/><circle r="100" class="hair"/></g>
+    <g class="hud-spin s2"><animateTransform attributeName="transform" type="rotate" from="0" to="-360" dur="26s" repeatCount="indefinite"/>
+      <circle r="84" class="hair"/>
+      <circle r="78" class="seg" stroke-dasharray="22 6"/>
+    </g>
+    <circle r="78" class="fill" id="hud-fill" transform="rotate(-90)"/>
+    <g class="hud-spin s3"><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="40s" repeatCount="indefinite"/>
+      <text class="ring-text"><textPath href="#hud-text-path">CERULEAN ✶ SIGNAL ACQUIRED ✶ KEEP SCROLLING ✶ CH-01 ✶ </textPath></text>
+    </g>
+    <g class="hud-spin s4"><animateTransform attributeName="transform" type="rotate" from="0" to="-360" dur="12s" repeatCount="indefinite"/><circle r="50" class="thin" stroke-dasharray="10 5 2 5"/></g>
+    <circle r="16" class="thin"/>
+    <circle r="3" class="dot"/>
+    <g class="cross"><line x1="-110" y1="0" x2="-58" y2="0"/><line x1="58" y1="0" x2="110" y2="0"/><line x1="0" y1="-110" x2="0" y2="-58"/><line x1="0" y1="58" x2="0" y2="110"/></g>
+    <g class="brackets"><path d="M-104 -84 v-20 h20"/><path d="M104 -84 v-20 h-20"/><path d="M-104 84 v20 h20"/><path d="M104 84 v20 h-20"/></g>
+    <text class="readout" x="-104" y="-90">SECTOR CR-01</text>
+    <text class="readout" x="104" y="-90" text-anchor="end" id="hud-pct">SIG 000</text>
+    <text class="readout" x="-104" y="98">◉ LIVE</text>
+    <text class="readout" x="104" y="98" text-anchor="end">VOL.01</text>
+  </svg>
+  <div class="scan" aria-hidden="true"></div>
 
   <!-- live 3D layer (objects are pinned to the .obj anchors below) -->
   <canvas id="scene" aria-hidden="true"></canvas>
@@ -71,31 +96,24 @@
       </div>
     </div>
 
-    <!-- giant type banners that slide as you scroll -->
-    <div class="band band-outline" style="top:13%" data-speed="0.9"><span>KEEP SCROLLING → KEEP SCROLLING → KEEP SCROLLING →</span></div>
-    <div class="band band-red" style="top:31%" data-speed="-0.8"><span>セルリアン ✶ セルリアン ✶ セルリアン ✶ セルリアン</span></div>
-    <div class="band band-outline band-blue" style="top:49%" data-speed="1.1"><span>HALFWAY-ISH ✶ HALFWAY-ISH ✶ HALFWAY-ISH</span></div>
-    <div class="band band-yellow" style="top:67%" data-speed="-1"><span>NOT YET ✶ NOT YET ✶ NOT YET ✶ NOT YET</span></div>
-    <div class="band band-outline" style="top:85%" data-speed="0.85"><span>ALMOST... ALMOST... ALMOST... ALMOST...</span></div>
-
     <!-- 3D objects that drift past on the long scroll -->
     <div class="obj" data-obj="blob"   data-mat="chrome" style="top:7%;  left:6%;   width:min(42vw,380px)" aria-hidden="true"></div>
     <div class="obj" data-obj="flower" data-mat="red"    style="top:15%; right:8%;  width:min(36vw,320px)" aria-hidden="true"></div>
-    <div class="obj" data-obj="knot"   data-mat="yellow" style="top:24%; left:28%;  width:min(50vw,440px)" aria-hidden="true"></div>
+    <div class="obj" data-obj="arrow"  data-mat="chrome" style="top:24%; left:28%;  width:min(50vw,440px)" aria-hidden="true"></div>
     <div class="obj" data-obj="c"      data-mat="chrome" style="top:34%; right:6%;  width:min(40vw,360px)" aria-hidden="true"></div>
     <div class="obj" data-obj="flower" data-mat="blue"   style="top:44%; left:9%;   width:min(38vw,340px)" aria-hidden="true"></div>
     <div class="obj" data-obj="blob"   data-mat="blue"   style="top:54%; right:18%; width:min(46vw,400px)" aria-hidden="true"></div>
     <div class="obj" data-obj="knot"   data-mat="chrome" style="top:64%; left:5%;   width:min(40vw,360px)" aria-hidden="true"></div>
     <div class="obj" data-obj="c"      data-mat="red"    style="top:74%; right:10%; width:min(36vw,320px)" aria-hidden="true"></div>
-    <div class="obj" data-obj="flower" data-mat="yellow" style="top:84%; left:24%;  width:min(44vw,380px)" aria-hidden="true"></div>
+    <div class="obj" data-obj="arrow"  data-mat="chrome" style="top:84%; left:24%;  width:min(44vw,380px)" aria-hidden="true"></div>
 
-    <div class="obj" data-obj="c"      data-mat="yellow" style="top:11%; left:58%;  width:min(30vw,260px)" aria-hidden="true"></div>
+    <div class="obj" data-obj="c"      data-mat="gold"   style="top:11%; left:58%;  width:min(30vw,260px)" aria-hidden="true"></div>
     <div class="obj" data-obj="blob"   data-mat="red"    style="top:19%; left:4%;   width:min(34vw,300px)" aria-hidden="true"></div>
     <div class="obj" data-obj="globe"  data-mat="chrome" style="top:29%; left:12%;  width:min(38vw,330px)" aria-hidden="true"></div>
-    <div class="obj" data-obj="knot"   data-mat="red"    style="top:39%; right:12%; width:min(34vw,300px)" aria-hidden="true"></div>
+    <div class="obj" data-obj="arrow"  data-mat="gold"   style="top:39%; right:12%; width:min(34vw,300px)" aria-hidden="true"></div>
     <div class="obj" data-obj="c"      data-mat="blue"   style="top:49%; left:40%;  width:min(40vw,340px)" aria-hidden="true"></div>
     <div class="obj" data-obj="flower" data-mat="chrome" style="top:59%; left:6%;   width:min(34vw,300px)" aria-hidden="true"></div>
-    <div class="obj" data-obj="blob"   data-mat="yellow" style="top:69%; right:6%;  width:min(36vw,320px)" aria-hidden="true"></div>
+    <div class="obj" data-obj="blob"   data-mat="gold"   style="top:69%; right:6%;  width:min(36vw,320px)" aria-hidden="true"></div>
     <div class="obj" data-obj="globe"  data-mat="red"    style="top:79%; left:8%;   width:min(36vw,320px)" aria-hidden="true"></div>
     <div class="obj" data-obj="knot"   data-mat="blue"   style="top:89%; right:14%; width:min(36vw,320px)" aria-hidden="true"></div>
 
