@@ -42,12 +42,6 @@ ul { list-style: none; }
 }
 @keyframes grain { 0% { transform: translate(0,0); } 25% { transform: translate(-3%,2%); } 50% { transform: translate(2%,-3%); } 75% { transform: translate(-2%,-1%); } }
 
-/* ---------- faint registration marks ---------- */
-.mark { position: fixed; z-index: 1; fill: none; stroke: var(--red); stroke-width: 1.2; opacity: .3; pointer-events: none; }
-.mark.m1 { width: 54px; left: 30%; top: 72%; }
-.mark.m2 { width: 14px; left: 30%; top: 22%; }
-.mark.m3 { width: 14px; left: 62%; top: 80%; }
-
 /* ---------- centered slate ---------- */
 .slate {
   position: relative; z-index: 2;
@@ -106,11 +100,6 @@ ul { list-style: none; }
 .drow.blink .bar { animation: flick 2.2s steps(2) infinite; }
 @keyframes flick { 50% { opacity: .35; } }
 
-/* ---------- station bug ---------- */
-.bug { position: fixed; right: clamp(12px, 2.4vw, 34px); bottom: clamp(12px, 2.4vw, 30px); z-index: 3; width: clamp(40px, 4.4vw, 60px); fill: none; stroke: #fff; opacity: .85; pointer-events: none; filter: drop-shadow(0 0 2px rgb(0 0 0 / .25)); }
-.bug circle { stroke-width: 7; }
-.bug path { stroke-width: 12; }
-
 /* ---------- small screens ---------- */
 @media (max-width: 700px) {
   .slate { padding: 2.5rem 58px 4.5rem 14px; }
@@ -121,7 +110,6 @@ ul { list-style: none; }
   .mini-icons { transform: none; }
   .links { width: 100%; }
   .link { gap: .55rem; padding: .5rem .6rem; }
-  .mark.m1 { left: 14%; top: 80%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
