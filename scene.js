@@ -147,6 +147,13 @@
   });
   if (!items.length) return;
 
+  // hero "c" material follows the theme
+  const THEME_MAT = { roots: 'chrome', signal: 'chrome', lime: 'blue', red: 'gold', black: 'chrome', synth: 'gold', nv: 'chrome', code: 'chrome' };
+  const heroItem = items.find(it => it.hero);
+  const applyThemeMat = id => { if (heroItem) heroItem.obj.material = MATS[THEME_MAT[id] || 'chrome']; };
+  applyThemeMat(document.documentElement.dataset.theme);
+  document.addEventListener('themechange', e => applyThemeMat(e.detail));
+
   // ---------- pin objects to their anchors ----------
   function layout() {
     const sy = scrollY;

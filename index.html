@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="roots">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +20,7 @@
   <div class="channels" aria-hidden="true">
 
     <!-- CH 01: acid-lime slate -->
-    <div class="ch ch-lime" data-ch="01" data-a="0.20" data-b="0.31" data-hud="#e4322b">
+    <div class="ch ch-lime" data-layer="lime">
       <svg class="lime-mark" viewBox="-100 -100 200 200">
         <circle r="88" fill="none" stroke="#e4322b" stroke-width="3"/>
         <circle r="74" fill="none" stroke="#e4322b" stroke-width="14"/>
@@ -36,14 +36,14 @@
     </div>
 
     <!-- CH 02: red / yellow crossed circles + radar pings -->
-    <div class="ch ch-red" data-ch="02" data-a="0.31" data-b="0.41" data-hud="#f2cf1d">
+    <div class="ch ch-red" data-layer="red">
       <div class="ping"></div><div class="ping p2"></div><div class="ping p3"></div>
       <div class="halftone"></div>
       <div class="red-stripe"></div>
     </div>
 
     <!-- CH 03: black + chrome gradient arrows -->
-    <div class="ch ch-black" data-ch="03" data-a="0.41" data-b="0.51" data-hud="#ffffff">
+    <div class="ch ch-black" data-layer="black">
       <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
         <defs>
           <linearGradient id="gh" x1="0" x2="1"><stop offset="0" stop-color="#fff"/><stop offset=".55" stop-color="#9a9a9a"/><stop offset="1" stop-color="#111"/></linearGradient>
@@ -61,7 +61,7 @@
     </div>
 
     <!-- CH 04: synthwave grid + sun -->
-    <div class="ch ch-grid" data-ch="04" data-a="0.51" data-b="0.62" data-hud="#2ff3ff">
+    <div class="ch ch-grid" data-layer="synth">
       <div class="sun"></div>
       <div class="floor"></div>
       <div class="kanji" data-text="青">青</div>
@@ -69,7 +69,7 @@
     </div>
 
     <!-- CH 05: night vision -->
-    <div class="ch ch-nv" data-ch="05" data-a="0.62" data-b="0.72" data-hud="#6dff8c">
+    <div class="ch ch-nv" data-layer="nv">
       <div class="nv-blob"></div>
       <div class="nv-noise"></div>
       <div class="nv-txt" style="top:16%;left:10%">OBJ-07 TRACKING<br>RNG 0.42 KM<br>ALT 0012 M<br>MODE: THERMAL</div>
@@ -79,7 +79,7 @@
     </div>
 
     <!-- CH 06: pink code + dials -->
-    <div class="ch ch-code" data-ch="06" data-a="0.72" data-b="0.82" data-hud="#ffd1f3">
+    <div class="ch ch-code" data-layer="code">
       <div class="code-cols" id="code-cols"></div>
       <svg class="dial" viewBox="-100 -100 200 200">
         <circle r="92" fill="none" stroke="#ffd1f3" stroke-width="10" stroke-dasharray="14 5" opacity=".75"/>
@@ -91,7 +91,6 @@
   </div>
 
   <!-- TV overlays -->
-  <div class="rec" aria-hidden="true"><span class="rec-dot"></span>REC <span id="timecode">00:00:00:00</span></div>
   <div class="osd" id="osd" aria-hidden="true">CH --</div>
   <div class="bug" aria-hidden="true"><svg viewBox="-50 -50 100 100"><circle r="44" fill="none" stroke="#fff" stroke-width="6"/><path d="M18 -18 A26 26 0 1 0 18 18" fill="none" stroke="#fff" stroke-width="12"/></svg></div>
   <div class="static" aria-hidden="true"></div>
@@ -134,8 +133,8 @@
 
   <header class="topbar">
     <span>cerulean</span>
-    <span>VOL.01 — LINKS</span>
-    <span class="progress" aria-hidden="true">000%</span>
+    <span class="topbar-mid">VOL.01 — LINKS</span>
+    <span class="progress" id="ch-label" aria-hidden="true">CH 00 ROOTS</span>
   </header>
 
   <p class="side-jp" aria-hidden="true">セルリアン・リンク集・二〇二六</p>
@@ -187,43 +186,24 @@
       </ul>
     </section>
 
-    <div class="marquee" aria-hidden="true">
-      <div class="marquee-track">
-        <span>CERULEAN ✶ セルリアン ✶ KEEP SCROLLING ✶ 青 ✶ CERULEAN ✶ セルリアン ✶ KEEP SCROLLING ✶ 青 ✶&nbsp;</span>
-        <span>CERULEAN ✶ セルリアン ✶ KEEP SCROLLING ✶ 青 ✶ CERULEAN ✶ セルリアン ✶ KEEP SCROLLING ✶ 青 ✶&nbsp;</span>
-      </div>
-    </div>
-
-    <!-- 3D objects that drift past on the long scroll -->
-    <div class="obj" data-obj="blob"   data-mat="chrome" style="top:7%;  left:6%;   width:min(42vw,380px)" aria-hidden="true"></div>
-    <div class="obj" data-obj="flower" data-mat="red"    style="top:15%; right:8%;  width:min(36vw,320px)" aria-hidden="true"></div>
-    <div class="obj" data-obj="arrow"  data-mat="chrome" style="top:24%; left:28%;  width:min(50vw,440px)" aria-hidden="true"></div>
-    <div class="obj" data-obj="c"      data-mat="chrome" style="top:34%; right:6%;  width:min(40vw,360px)" aria-hidden="true"></div>
-    <div class="obj" data-obj="flower" data-mat="blue"   style="top:44%; left:9%;   width:min(38vw,340px)" aria-hidden="true"></div>
-    <div class="obj" data-obj="blob"   data-mat="blue"   style="top:54%; right:18%; width:min(46vw,400px)" aria-hidden="true"></div>
-    <div class="obj" data-obj="knot"   data-mat="chrome" style="top:64%; left:5%;   width:min(40vw,360px)" aria-hidden="true"></div>
-    <div class="obj" data-obj="c"      data-mat="red"    style="top:74%; right:10%; width:min(36vw,320px)" aria-hidden="true"></div>
-    <div class="obj" data-obj="arrow"  data-mat="chrome" style="top:84%; left:24%;  width:min(44vw,380px)" aria-hidden="true"></div>
-
-    <div class="obj" data-obj="c"      data-mat="gold"   style="top:11%; left:58%;  width:min(30vw,260px)" aria-hidden="true"></div>
-    <div class="obj" data-obj="blob"   data-mat="red"    style="top:19%; left:4%;   width:min(34vw,300px)" aria-hidden="true"></div>
-    <div class="obj" data-obj="globe"  data-mat="chrome" style="top:29%; left:12%;  width:min(38vw,330px)" aria-hidden="true"></div>
-    <div class="obj" data-obj="arrow"  data-mat="gold"   style="top:39%; right:12%; width:min(34vw,300px)" aria-hidden="true"></div>
-    <div class="obj" data-obj="c"      data-mat="blue"   style="top:49%; left:40%;  width:min(40vw,340px)" aria-hidden="true"></div>
-    <div class="obj" data-obj="flower" data-mat="chrome" style="top:59%; left:6%;   width:min(34vw,300px)" aria-hidden="true"></div>
-    <div class="obj" data-obj="blob"   data-mat="gold"   style="top:69%; right:6%;  width:min(36vw,320px)" aria-hidden="true"></div>
-    <div class="obj" data-obj="globe"  data-mat="red"    style="top:79%; left:8%;   width:min(36vw,320px)" aria-hidden="true"></div>
-    <div class="obj" data-obj="knot"   data-mat="blue"   style="top:89%; right:14%; width:min(36vw,320px)" aria-hidden="true"></div>
-
-    <div class="end">
-      <div class="obj obj-end" data-obj="globe" data-mat="blue" aria-hidden="true"></div>
-    </div>
   </main>
 
-  <footer class="footer">
-    <span>© <span id="year">2026</span> cerulean</span>
-    <span>made with too much free time</span>
-  </footer>
+  <!-- theme remote -->
+  <nav class="remote" aria-label="Choose a theme">
+    <button class="rm-step" type="button" data-step="-1" aria-label="Previous theme">◀</button>
+    <div class="rm-list" role="radiogroup" aria-label="Themes">
+      <button type="button" role="radio" data-theme="roots"><b>00</b><span>Roots</span></button>
+      <button type="button" role="radio" data-theme="signal"><b>01</b><span>Signal</span></button>
+      <button type="button" role="radio" data-theme="lime"><b>02</b><span>Acid</span></button>
+      <button type="button" role="radio" data-theme="red"><b>03</b><span>Alert</span></button>
+      <button type="button" role="radio" data-theme="black"><b>04</b><span>Chrome</span></button>
+      <button type="button" role="radio" data-theme="synth"><b>05</b><span>Sunset</span></button>
+      <button type="button" role="radio" data-theme="nv"><b>06</b><span>Night</span></button>
+      <button type="button" role="radio" data-theme="code"><b>07</b><span>Pink</span></button>
+    </div>
+    <button class="rm-step" type="button" data-step="1" aria-label="Next theme">▶</button>
+  </nav>
+
 
   <script src="script.js"></script>
   <script src="vendor/three.min.js" defer></script>
