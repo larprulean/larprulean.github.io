@@ -1,4 +1,4 @@
-// Fill the data column on the right edge: tiny icons, mini logos, counters and bars.
+// Fill the data column on the right edge: tiny icons and bars.
 // The list is rendered twice so the slow upward feed loops seamlessly.
 (() => {
   const track = document.getElementById('datacol');
@@ -15,14 +15,12 @@
 
   const rows = [
     () => `<div class="drow">${ICONS.doc}<span class="bar" style="--fill:${fill()}"></span></div>`,
-    () => `<div class="drow"><span class="mini">ceru<br>lean</span><span class="bar tall" style="--fill:${fill()}"></span></div>`,
     () => `<div class="drow blink">${ICONS.tower}<span class="bar" style="--fill:${fill()}"></span></div>`,
     () => `<div class="drow">${ICONS.ring}<span class="bar" style="--fill:${fill()}"></span></div>`,
-    () => `<div class="drow"><span class="num">00${10 + Math.floor(Math.random() * 89)}</span><span class="bar" style="--fill:${fill()}"></span></div>`,
     () => `<div class="drow">${ICONS.screen}<span class="bar tall" style="--fill:${fill()}"></span></div>`,
     () => `<div class="drow blink">${ICONS.cross}<span class="bar" style="--fill:${fill()}"></span></div>`,
   ];
 
-  const block = Array.from({ length: 4 }, () => rows.map(r => r()).join('')).join('');
+  const block = Array.from({ length: 7 }, () => rows.map(r => r()).join('')).join('');
   track.innerHTML = block + block;
 })();
