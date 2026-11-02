@@ -91,36 +91,6 @@
   // N — wide inflated
   tube('M948 294 C946 220 948 150 952 76 C984 146 1024 214 1058 284 C1062 210 1064 140 1068 64', { w: 34, depth: 16, rot: -2, cx: 1008, cy: 180 });
 
-  // ---- emblem: rotating 3D spiral inside the CERULEAN text ring ----
-  const spiralHost = document.getElementById('em-spiral');
-  if (spiralHost) {
-    const pts = [];
-    const turns = 4.2, steps = 700, r0 = 4, r1 = 58;
-    for (let i = 0; i <= steps; i++) {
-      const t = i / steps, a = t * turns * Math.PI * 2, r = r0 + (r1 - r0) * t;
-      pts.push((i ? 'L' : 'M') + (Math.cos(a) * r).toFixed(2) + ' ' + (Math.sin(a) * r).toFixed(2));
-    }
-    const d = pts.join('');
-    const fs = el('filter', { id: 'xerox-sm', x: '-10%', y: '-10%', width: '120%', height: '120%' }, defs);
-    el('feTurbulence', { type: 'fractalNoise', baseFrequency: '0.05', numOctaves: '2', seed: '3', result: 'w' }, fs);
-    el('feDisplacementMap', { in: 'SourceGraphic', in2: 'w', scale: '2.2', xChannelSelector: 'R', yChannelSelector: 'G' }, fs);
-    const wrap = el('g', { filter: 'url(#xerox-sm)' }, spiralHost);
-    const spinning = (parent, attrs) => {
-      const g = el('g', {}, parent);
-      if (!reduce) el('animateTransform', { attributeName: 'transform', type: 'rotate', from: '0', to: '-360', dur: '9s', repeatCount: 'indefinite' }, g);
-      el('path', { d, fill: 'none', 'stroke-linecap': 'round', ...attrs }, g);
-    };
-    const depth = 5;
-    for (let k = depth; k >= 1; k--) {
-      const off = el('g', { transform: `translate(${k * 1.1} ${k * 1.05})` }, wrap);
-      spinning(off, { stroke: mix(COL.sideNear, COL.sideFar, (k - 1) / depth), 'stroke-width': 9 });
-    }
-    spinning(wrap, { stroke: COL.outline, 'stroke-width': 9.5 });
-    spinning(wrap, { stroke: COL.face, 'stroke-width': 6.4 });
-    const hiG = el('g', { transform: 'translate(-1.3 -1.3)' }, wrap);
-    spinning(hiG, { stroke: COL.hi, 'stroke-opacity': .75, 'stroke-width': 1.8 });
-  }
-
   // line boil: swap noise seeds a few times a second
   if (!reduce) {
     let s = 0;
