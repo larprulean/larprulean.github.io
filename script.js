@@ -77,11 +77,12 @@ if (tc) {
 }
 
 function onScrollFx(p) {
-  const dark = 1;                                                  // broadcast look from the first frame
-  const hudIn = 1 - ramp(p, 0.9, 0.97);                            // reticle on from the start, fades at the end
+  const dark = ramp(p, 0.035, 0.075);                              // paper hero -> broadcast
+  const hudIn = ramp(p, 0.04, 0.09) * (1 - ramp(p, 0.9, 0.97));     // reticle after the hero, fades at the end
   const burst = ramp(p, 0.8, 1);                                   // light burst at the bottom
   root.style.setProperty('--tint', dark.toFixed(3));
-  root.style.setProperty('--rings', '0.55');
+  root.style.setProperty('--rings', (0.8 - dark * 0.3).toFixed(3));
+  root.style.setProperty('--hbg', (1 - dark).toFixed(3));
   root.classList.toggle('is-dark', dark > 0.5);
   if (hud) {
     root.style.setProperty('--ho', hudIn.toFixed(3));

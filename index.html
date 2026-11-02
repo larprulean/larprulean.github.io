@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="poweron" aria-hidden="true"></div>
   <!-- background: op-art rings (moiré) + grain -->
   <div class="rings" aria-hidden="true">
     <div class="ring-layer a"></div>
@@ -16,6 +15,7 @@
   </div>
   <!-- broadcast-style scroll graphics -->
   <div class="tint" aria-hidden="true"></div>
+  <div class="hero-bg" aria-hidden="true"></div>
   <!-- broadcast channels: crossfade as you scroll (data-a / data-b = scroll range) -->
   <div class="channels" aria-hidden="true">
 
@@ -108,7 +108,7 @@
     </g>
     <circle r="78" class="fill" id="hud-fill" transform="rotate(-90)"/>
     <g class="hud-spin s3"><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="40s" repeatCount="indefinite"/>
-      <text class="ring-text"><textPath href="#hud-text-path">CERULEAN ✶ SIGNAL ACQUIRED ✶ KEEP SCROLLING ✶ CH-01 ✶ </textPath></text>
+      <text class="ring-text"><textPath href="#hud-text-path">CERULEAN ✶ CERULEAN ✶ CERULEAN ✶ CERULEAN ✶ </textPath></text>
     </g>
     <g class="hud-spin s4"><animateTransform attributeName="transform" type="rotate" from="0" to="-360" dur="12s" repeatCount="indefinite"/><circle r="50" class="thin" stroke-dasharray="10 5 2 5"/></g>
     <circle r="16" class="thin"/>
@@ -143,18 +143,29 @@
 
   <main class="page" id="top">
     <section class="hero">
-      <div class="hero-rays" aria-hidden="true"></div>
-      <div class="hero-lbl tl" aria-hidden="true">◉ LIVE — CH 00<br><span>POWER ON ✶ SIGNAL OK</span></div>
-      <div class="hero-lbl tr" aria-hidden="true">LARPRULEAN.GITHUB.IO<br><span>EST. 2026 ✶ VOL.01</span></div>
-      <div class="hero-bars left" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-      <div class="hero-bars right" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-
-      <div class="obj obj-hero" data-obj="c" data-mat="chrome" data-hero aria-hidden="true"></div>
+      <div class="obj obj-hero" data-obj="c" data-mat="chrome" data-hero aria-hidden="true">
+        <svg class="c-ring" viewBox="-100 -100 200 200">
+          <defs><path id="c-ring-path" d="M -82 0 A 82 82 0 1 1 82 0 A 82 82 0 1 1 -82 0"/></defs>
+          <circle r="96" fill="none" stroke="#0a84c6" stroke-width="1.2" opacity=".55"/>
+          <circle r="70" fill="none" stroke="#0a84c6" stroke-width="1.2" opacity=".35"/>
+          <g><animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="18s" repeatCount="indefinite"/>
+            <text class="c-ring-text"><textPath href="#c-ring-path">CERULEAN ✶ CERULEAN ✶ CERULEAN ✶ CERULEAN ✶ </textPath></text>
+          </g>
+        </svg>
+      </div>
       <h1 class="title" aria-label="cerulean">
-        <span class="word chrome" aria-hidden="true">CERU</span>
-        <span class="word gold" aria-hidden="true">LEAN</span>
+        <span class="word stripe" data-text="CERULEAN" aria-hidden="true">CERULEAN</span>
       </h1>
-      <p class="lower-third"><span class="lt-a">@larprulean</span><span class="lt-b">links ✶ profiles ✶ misc.</span></p>
+      <p class="tagline"><span class="tag-box">@larprulean</span> links / profiles / misc.</p>
+
+      <svg class="doodle" viewBox="0 0 220 160" aria-hidden="true">
+        <path class="dd" d="M200 18 C 150 10, 110 40, 96 86 C 90 104, 88 118, 84 132"/>
+        <path class="dd" d="M66 116 L 84 136 L 100 112"/>
+        <g class="dd-fig" transform="translate(178 70)">
+          <circle class="dd" cx="0" cy="-26" r="10"/>
+          <path class="dd" d="M0 -16 L 0 14 M -16 -6 L 0 -2 L 16 -10 M 0 14 L -12 34 M 0 14 L 12 34"/>
+        </g>
+      </svg>
 
       <ul class="links">
         <li>
@@ -177,7 +188,6 @@
     </section>
 
     <div class="marquee" aria-hidden="true">
-      <span class="ticker-tag">● LIVE</span>
       <div class="marquee-track">
         <span>CERULEAN ✶ セルリアン ✶ KEEP SCROLLING ✶ 青 ✶ CERULEAN ✶ セルリアン ✶ KEEP SCROLLING ✶ 青 ✶&nbsp;</span>
         <span>CERULEAN ✶ セルリアン ✶ KEEP SCROLLING ✶ 青 ✶ CERULEAN ✶ セルリアン ✶ KEEP SCROLLING ✶ 青 ✶&nbsp;</span>
