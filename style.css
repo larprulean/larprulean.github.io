@@ -68,15 +68,13 @@ ul { list-style: none; }
 /* ---------- links as slate rows ---------- */
 .links { margin-top: clamp(1.6rem, 5vh, 2.8rem); display: flex; flex-direction: column; gap: .7rem; width: min(27rem, 100%); }
 .link {
-  display: grid; grid-template-columns: auto auto 1fr; align-items: center; gap: .8rem;
+  display: grid; grid-template-columns: auto 1fr; align-items: center; gap: .8rem; text-align: left;
   min-height: 2.9rem; padding: .7rem 1rem; border: 2px solid var(--red); color: var(--red); background: var(--row-bg);
   transition: background .12s, color .12s;
 }
 .link-num { font-size: .62rem; letter-spacing: .14em; }
 .link-ic { width: 1.05rem; height: 1.05rem; fill: currentColor; }
 .link-name { font-family: var(--label); font-weight: 400; font-size: 1rem; line-height: 1.1; letter-spacing: .16em; text-transform: lowercase; }
-.link-bar { height: 5px; background: linear-gradient(90deg, currentColor 0 68%, var(--red-soft) 68% 100%); min-width: 20px; }
-.link:hover .link-bar, .link:focus-visible .link-bar { background: linear-gradient(90deg, currentColor 0 68%, rgb(20 18 28 / .35) 68% 100%); }
 .link-sub { font-size: .58rem; letter-spacing: .18em; text-transform: uppercase; }
 .link:hover, .link:focus-visible { background: var(--red); color: #14121c; }
 
