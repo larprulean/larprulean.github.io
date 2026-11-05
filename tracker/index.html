@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ye tracker search</title>
+  <meta name="description" content="Search every song and version on the Ye Tracker, with Best Of and Special picks.">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#24223a">
+  <link rel="stylesheet" href="tracker.css">
+</head>
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <a class="home" href="../">← cerulean</a>
+      <h1>ye tracker <span>search</span></h1>
+      <p class="meta" id="meta">loading…</p>
+    </div>
+
+    <nav class="views" aria-label="Lists">
+      <button type="button" data-view="all" aria-pressed="true">All unreleased</button>
+      <button type="button" data-view="best" aria-pressed="false">⭐ Best Of</button>
+      <button type="button" data-view="special" aria-pressed="false">✨ Special</button>
+      <button type="button" data-view="grail" aria-pressed="false">🏆 Grails</button>
+      <button type="button" data-view="released" aria-pressed="false">Released</button>
+    </nav>
+
+    <div class="controls">
+      <label class="search">
+        <span class="sr">Search songs</span>
+        <input id="q" type="search" placeholder="Search song, alt title, feature, producer…" autocomplete="off" spellcheck="false">
+      </label>
+      <label class="sel">
+        <span class="sr">Era</span>
+        <select id="era"><option value="">All eras</option></select>
+      </label>
+      <label class="sel" id="portion-wrap">
+        <span class="sr">Availability</span>
+        <select id="portion">
+          <option value="">Any availability</option>
+          <option value="playable">Has audio</option>
+          <option>OG File</option><option>Full</option><option>Tagged</option><option>Partial</option>
+          <option>Snippet</option><option>Beat Only</option><option>Stem Bounce</option>
+          <option>Confirmed</option><option>Rumored</option>
+        </select>
+      </label>
+      <label class="check"><input id="notes" type="checkbox"> search notes too</label>
+    </div>
+    <p class="count" id="count" aria-live="polite"></p>
+  </header>
+
+  <main id="list" class="list"></main>
+  <div id="more" class="more" aria-hidden="true"></div>
+
+  <footer class="foot">
+    Data from <a href="https://yetracker.net" target="_blank" rel="noopener">yetracker.net</a>, refreshed automatically. Not affiliated.
+  </footer>
+
+  <template id="card-tpl">
+    <article class="card">
+      <div class="card-head">
+        <h2 class="name"></h2>
+        <span class="flags"></span>
+      </div>
+      <p class="alt"></p>
+      <p class="sub"><span class="era"></span><span class="credits"></span></p>
+      <label class="vsel">
+        <span class="vlabel"></span>
+        <select class="versions"></select>
+      </label>
+      <div class="detail">
+        <dl class="facts"></dl>
+        <p class="notes"></p>
+        <ul class="links"></ul>
+      </div>
+    </article>
+  </template>
+
+  <script src="tracker.js"></script>
+</body>
+</html>
